@@ -9,7 +9,7 @@ const MedicalEntry = mongoose.model("medicalEntry", {
   medicalReport: String,
   kindOfTest: String,
   date: String,
-  img: String,
+  img: Object,
 });
 
 module.exports = MedicalEntry;

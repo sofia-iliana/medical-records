@@ -1,13 +1,3 @@
-const mongoose = require("mongoose");
-const db = require("./connection");
+const router = require("express").Router();
 
-const User = mongoose.model("user", {
-  fullName: String,
-  email: String,
-  password: String,
-  phone: String,
-  socialSecNum: String,
-  dateOfBirth: String,
-});
-
-module.exports = User;
+module.exports = router;
