@@ -1,7 +1,8 @@
 const MedicalEntry = require("../modules/medicalEntry");
 const cloudinary = require("../modules/cloudinary");
 
-const CreateMedicalEntry = async (req, res) => {
+//create entry and save image in cloudinary
+const createMedicalEntry = async (req, res) => {
   const {
     fullName,
     socialSecNum,
@@ -39,4 +40,47 @@ const CreateMedicalEntry = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+//get entries user's entries by userId
+const getMedicalEntries = async (req, res) => {
+  try {
+    const entries = await MedicalEntry.find({
+      userId: req.params.userId,
+    });
+    res.send(entries);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//delete entry and image from cloudinary
+
+const deleteEntry = async (req, res) => {
+  try {
+    const entry = await MedicalEntry.findById({ _id: req.params.id });
+    const imgId = entry.img.public_id;
+    await cloudinary.uploader.destroy(imgId);
+    await MedicalEntry.deleteOne({ _id: req.params.id });
+    res.send({ msg: "deleted" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//update entry
+const editEntry = async (req, res) => {
+  try {
+    await MedicalEntry.findByIdAndUpdate({ _id: req.params.id }, req.body);
+    res.send({ msg: "Update saved" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createMedicalEntry,
+  getMedicalEntries,
+  editEntry,
+  deleteEntry,
 };
