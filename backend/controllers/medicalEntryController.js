@@ -59,8 +59,11 @@ const getMedicalEntries = async (req, res) => {
 const deleteEntry = async (req, res) => {
   try {
     const entry = await MedicalEntry.findById({ _id: req.params.id });
-    const imgId = entry.img.public_id;
-    await cloudinary.uploader.destroy(imgId);
+    if (entry.img) {
+      const imgId = entry.img.public_id;
+      await cloudinary.uploader.destroy(imgId);
+    }
+
     await MedicalEntry.deleteOne({ _id: req.params.id });
     res.send({ msg: "deleted" });
   } catch (error) {
