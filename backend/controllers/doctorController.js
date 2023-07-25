@@ -12,10 +12,10 @@ const doctorSignup = async (req, res) => {
   bcrypt.genSalt(10, function (err, salt) {
     bcrypt.hash(req.body.password, salt, async function (err, hash) {
       const doctor = {
-        fullName: String,
-        email: String,
-        password: String,
-        specialty: String,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: hash,
+        specialty: req.body.specialty,
       };
       const newDoctor = await Doctor.create(doctor);
       var token = jwt.sign({ id: newDoctor._id }, "medical");
