@@ -21,49 +21,72 @@ function Signup() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="container">
+      <div className="formContainer">
         <h1>Signup</h1>
-        <label for="role">Signup as:</label>
-        <select
-          name="role"
-          id="role"
-          onChange={(e) => {
-            setRole(e.target.value);
-            chooseRole();
-          }}
-        >
-          <option value="patient">Patient</option>
-          <option value="doctor">Doctor</option>
-        </select>
+        <div>
+          <label for="role">Signup as:</label>
+          <select
+            name="role"
+            id="role"
+            onChange={(e) => {
+              setRole(e.target.value);
+              chooseRole();
+            }}
+          >
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+          </select>
+        </div>
+
         {roleB ? (
           <div>
-            <label for="fullName">Full Name:</label>
-            <input id="fullName" placeholder="Full name"></input>
-            <label for="specialty">Specialty:</label>
-            <input id="specialty" placeholder="Specialty"></input>
-            <label for="email">Email:</label>
-            <input id="email" placeholder="Email"></input>
-            <label for="password">Password:</label>
-            <input id="password" placeholder="Password"></input>
+            <div>
+              <label for="fullName">Full Name:</label>
+              <input id="fullName" placeholder="Full name"></input>
+            </div>
+            <div>
+              <label for="specialty">Specialty:</label>
+              <input id="specialty" placeholder="Specialty"></input>
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input id="email" placeholder="Email"></input>
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <input id="password" placeholder="Password"></input>
+            </div>
           </div>
         ) : (
           <div>
-            <label for="fullName">Full Name:</label>
-            <input id="fullName" placeholder="Full name"></input>
-            <label for="socialSecNum">Social Security Number:</label>
-            <input
-              id="socialSecNum"
-              placeholder="Social security number"
-            ></input>
-            <label for="dateOfBirth">Date Of Birth:</label>
-            <input id="dateOfBirth" placeholder="Date of birth"></input>
-            <label for="phone">Phone Number:</label>
-            <input id="phone" placeholder="Phone number"></input>
-            <label for="email">Email:</label>
-            <input id="email" placeholder="Email"></input>
-            <label for="password">Password:</label>
-            <input id="password" placeholder="Password"></input>
+            <div>
+              <label for="fullName">Full Name:</label>
+              <input id="fullName" placeholder="Full name"></input>
+            </div>
+            <div>
+              <label for="socialSecNum">Social Security Number:</label>
+              <input
+                id="socialSecNum"
+                placeholder="Social security number"
+              ></input>
+            </div>
+            <div>
+              <label for="dateOfBirth">Date Of Birth:</label>
+              <input id="dateOfBirth" placeholder="Date of birth"></input>
+            </div>
+            <div>
+              <label for="phone">Phone Number:</label>
+              <input id="phone" placeholder="Phone number"></input>
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input id="email" placeholder="Email"></input>
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <input id="password" placeholder="Password"></input>
+            </div>
           </div>
         )}
         <button>Signup</button>

@@ -1,0 +1,21 @@
+a {
+  text-decoration: underline;
+  color: blue;
+}
+
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  display: grid;
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+h1,
+p {
+  text-align: center;
+}
