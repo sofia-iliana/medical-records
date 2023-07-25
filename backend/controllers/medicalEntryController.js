@@ -63,7 +63,6 @@ const deleteEntry = async (req, res) => {
       const imgId = entry.img.public_id;
       await cloudinary.uploader.destroy(imgId);
     }
-
     await MedicalEntry.deleteOne({ _id: req.params.id });
     res.send({ msg: "deleted" });
   } catch (error) {
