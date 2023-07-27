@@ -4,20 +4,17 @@ import axios from "axios";
 
 function Signup() {
   const [role, setRole] = useState("patient");
-  const [roleB, setRoleB] = useState(true);
+  const [fullName, setFullName] = useState("");
+  const [socialSecNum, setSocialSecNum] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [specialty, setSpecialty] = useState("");
   const navigate = useNavigate();
 
   function toLogin() {
     navigate("/login");
-  }
-
-  function chooseRole() {
-    if (role === "patient") {
-      setRoleB(true);
-    } else {
-      setRoleB(false);
-    }
-    console.log(roleB);
   }
 
   return (
@@ -31,7 +28,6 @@ function Signup() {
             id="role"
             onChange={(e) => {
               setRole(e.target.value);
-              chooseRole();
             }}
           >
             <option value="patient">Patient</option>
@@ -39,53 +35,110 @@ function Signup() {
           </select>
         </div>
 
-        {roleB ? (
+        {role === "doctor" ? (
           <div>
             <div>
               <label for="fullName">Full Name:</label>
-              <input id="fullName" placeholder="Full name"></input>
+              <input
+                id="fullName"
+                placeholder="Full name"
+                onChange={(e) => {
+                  setFullName(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="specialty">Specialty:</label>
-              <input id="specialty" placeholder="Specialty"></input>
+              <input
+                id="specialty"
+                placeholder="Specialty"
+                onChange={(e) => {
+                  setSpecialty(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="email">Email:</label>
-              <input id="email" placeholder="Email"></input>
+              <input
+                id="email"
+                placeholder="Email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="password">Password:</label>
-              <input id="password" placeholder="Password"></input>
+              <input
+                id="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              ></input>
             </div>
           </div>
         ) : (
           <div>
             <div>
               <label for="fullName">Full Name:</label>
-              <input id="fullName" placeholder="Full name"></input>
+              <input
+                id="fullName"
+                placeholder="Full name"
+                onChange={(e) => {
+                  setFullName(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="socialSecNum">Social Security Number:</label>
               <input
                 id="socialSecNum"
                 placeholder="Social security number"
+                onChange={(e) => {
+                  setSocialSecNum(e.target.value);
+                }}
               ></input>
             </div>
             <div>
               <label for="dateOfBirth">Date Of Birth:</label>
-              <input id="dateOfBirth" placeholder="Date of birth"></input>
+              <input
+                id="dateOfBirth"
+                placeholder="Date of birth"
+                onChange={(e) => {
+                  setDateOfBirth(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="phone">Phone Number:</label>
-              <input id="phone" placeholder="Phone number"></input>
+              <input
+                id="phone"
+                placeholder="Phone number"
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="email">Email:</label>
-              <input id="email" placeholder="Email"></input>
+              <input
+                id="email"
+                placeholder="Email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              ></input>
             </div>
             <div>
               <label for="password">Password:</label>
-              <input id="password" placeholder="Password"></input>
+              <input
+                id="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              ></input>
             </div>
           </div>
         )}

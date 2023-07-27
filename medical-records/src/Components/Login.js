@@ -4,20 +4,45 @@ import axios from "axios";
 
 function Login() {
   const [role, setRole] = useState("patient");
-  const [roleB, setRoleB] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   function toSignup() {
     navigate("/signup");
   }
 
-  function chooseRole() {
-    if (role === "patient") {
-      setRoleB(true);
+  function sendPost(url, path) {
+    axios
+      .post(url, {
+        email,
+        password,
+      })
+      .then(({ data }) => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          navigate(path);
+        } else {
+          alert(data.msg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  //checks if you are logging in as patient or doctor
+  function login() {
+    if (email && password) {
+      if (role === "patient") {
+        sendPost("http://localhost:1212/user/login", "/profile");
+      } else {
+        sendPost("http://localhost:1212/doctor/login", "/profile");
+      }
     } else {
-      setRoleB(false);
+      alert("Enter email and password");
     }
-    console.log(roleB);
   }
 
   return (
@@ -31,7 +56,6 @@ function Login() {
             id="role"
             onChange={(e) => {
               setRole(e.target.value);
-              chooseRole();
             }}
           >
             <option value="patient">Patient</option>
@@ -39,30 +63,34 @@ function Login() {
           </select>
         </div>
 
-        {roleB ? (
-          <div>
-            <div>
-              <label for="email">Email:</label>
-              <input id="email" placeholder="Email"></input>
-            </div>
-            <div>
-              <label for="password">Password:</label>
-              <input id="password" placeholder="Password"></input>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <div>
-              <label for="email">Email:</label>
-              <input id="email" placeholder="Email"></input>
-            </div>
-            <div>
-              <label for="password">Password:</label>
-              <input id="password" placeholder="Password"></input>
-            </div>
-          </div>
-        )}
-        <button>Login</button>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input
+            id="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
+        </div>
+
+        <button
+          onClick={() => {
+            login();
+          }}
+        >
+          Login
+        </button>
         <p>
           If you don't have an account{" "}
           <a
