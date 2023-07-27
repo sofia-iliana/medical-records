@@ -23,6 +23,35 @@ function UserProfile() {
           <option value="test">Medical Test</option>
         </select>
       </div>
+      {(() => {
+        if (search === "date") {
+          return (
+            <div>
+              <label for="date">Date:</label>
+              <DatePicker id="date"></DatePicker>
+            </div>
+          );
+        } else if (search === "specialty") {
+          return (
+            <div>
+              <label for="specialty">Specialty:</label>
+              <input id="specialty"></input>
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              <label for="test">Medical Test:</label>
+              <input id="test"></input>
+            </div>
+          );
+        }
+      })()}
+      <button>Search</button>
+      <h4>Results</h4>
+      <ul>
+        <li>test1</li>
+      </ul>
     </div>
   );
 }
