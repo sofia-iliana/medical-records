@@ -1,10 +1,6 @@
 const MedicalEntry = require("../modules/medicalEntry");
 const cloudinary = require("../modules/cloudinary");
-const express = require("express");
-const app = express();
 
-app.use(express.json({ limit: "50mb", extended: true }));
-app.use(express.urlencoded({ limit: "50mb", extended: true }));
 //create entry and save image in cloudinary
 const createMedicalEntry = async (req, res) => {
   const {

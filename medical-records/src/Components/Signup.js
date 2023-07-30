@@ -12,9 +12,57 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [specialty, setSpecialty] = useState("");
   const navigate = useNavigate();
+  const [userSignup, setUserSignup] = useState({
+    fullName,
+    email,
+    password,
+    phone,
+    socialSecNum,
+    dateOfBirth,
+  });
+  const [doctorSignup, setDoctorSignup] = useState({
+    fullName,
+    email,
+    password,
+    specialty,
+  });
 
   function toLogin() {
     navigate("/login");
+  }
+
+  function sendPost(url, path, signupObj) {
+    axios
+      .post(url, signupObj)
+      .then(({ data }) => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          navigate(path);
+        } else {
+          alert(data.msg);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  //signup as user or doctor
+  function signup() {
+    if (email && password && fullName) {
+      if (role === "patient") {
+        sendPost("http://localhost:1212/user/signup", "/profile", userSignup);
+      } else {
+        sendPost(
+          "http://localhost:1212/doctor/signup",
+          "/profile",
+          doctorSignup
+        );
+      }
+    } else {
+      alert("Please, fill the form");
+    }
   }
 
   return (
@@ -142,7 +190,13 @@ function Signup() {
             </div>
           </div>
         )}
-        <button>Signup</button>
+        <button
+          onClick={() => {
+            signup();
+          }}
+        >
+          Signup
+        </button>
         <p>
           If you have an account{" "}
           <a
