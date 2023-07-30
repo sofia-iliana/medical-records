@@ -5,6 +5,26 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function NewEntry() {
+  const [image, setImage] = useState("");
+
+  function handleUploadImage(e) {
+    const file = e.target.files[0];
+    console.log(file);
+    transformFile(file);
+  }
+
+  function transformFile(file) {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+    } else {
+      setImage("");
+    }
+  }
+
   return (
     <div>
       <h1>New Medical Entry</h1>
@@ -26,9 +46,21 @@ function NewEntry() {
       </div>
       <div>
         <label for="upload"> Upload the test results:</label>
-        <input type="file" />
+        <input
+          type="file"
+          accept="image/"
+          onChange={(e) => {
+            handleUploadImage(e);
+          }}
+        />
       </div>
-      <button>New Entry</button>
+      <button
+        onClick={() => {
+          console.log(image);
+        }}
+      >
+        New Entry
+      </button>
     </div>
   );
 }
