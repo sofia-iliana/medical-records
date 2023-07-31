@@ -28,7 +28,7 @@ function Signup() {
   });
 
   function toLogin() {
-    navigate("/login");
+    navigate("/");
   }
 
   function sendPost(url, path, signupObj) {
@@ -70,7 +70,7 @@ function Signup() {
       <div className="formContainer">
         <h1>Signup</h1>
         <div>
-          <label for="role">Signup as:</label>
+          <label htmlFor="role">Signup as:</label>
           <select
             name="role"
             id="role"
@@ -86,7 +86,7 @@ function Signup() {
         {role === "doctor" ? (
           <div>
             <div>
-              <label for="fullName">Full Name:</label>
+              <label htmlFor="fullName">Full Name:</label>
               <input
                 id="fullName"
                 placeholder="Full name"
@@ -96,7 +96,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="specialty">Specialty:</label>
+              <label htmlFor="specialty">Specialty:</label>
               <input
                 id="specialty"
                 placeholder="Specialty"
@@ -106,7 +106,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="email">Email:</label>
+              <label htmlFor="email">Email:</label>
               <input
                 id="email"
                 placeholder="Email"
@@ -116,7 +116,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="password">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 id="password"
                 placeholder="Password"
@@ -129,7 +129,7 @@ function Signup() {
         ) : (
           <div>
             <div>
-              <label for="fullName">Full Name:</label>
+              <label htmlFor="fullName">Full Name:</label>
               <input
                 id="fullName"
                 placeholder="Full name"
@@ -139,7 +139,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="socialSecNum">Social Security Number:</label>
+              <label htmlFor="socialSecNum">Social Security Number:</label>
               <input
                 id="socialSecNum"
                 placeholder="Social security number"
@@ -149,7 +149,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="dateOfBirth">Date Of Birth:</label>
+              <label htmlFor="dateOfBirth">Date Of Birth:</label>
               <input
                 id="dateOfBirth"
                 placeholder="Date of birth"
@@ -159,7 +159,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="phone">Phone Number:</label>
+              <label htmlFor="phone">Phone Number:</label>
               <input
                 id="phone"
                 placeholder="Phone number"
@@ -169,7 +169,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="email">Email:</label>
+              <label htmlFor="email">Email:</label>
               <input
                 id="email"
                 placeholder="Email"
@@ -179,7 +179,7 @@ function Signup() {
               ></input>
             </div>
             <div>
-              <label for="password">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 id="password"
                 placeholder="Password"

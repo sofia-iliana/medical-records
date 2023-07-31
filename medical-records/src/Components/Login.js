@@ -50,7 +50,7 @@ function Login() {
       <div className="formContainer">
         <h1>Login</h1>
         <div>
-          <label for="role">Login as:</label>
+          <label htmlFor="role">Login as:</label>
           <select
             name="role"
             id="role"
@@ -64,7 +64,7 @@ function Login() {
         </div>
 
         <div>
-          <label for="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             id="email"
             placeholder="Email"
@@ -74,7 +74,7 @@ function Login() {
           ></input>
         </div>
         <div>
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             id="password"
             placeholder="Password"

@@ -54,6 +54,16 @@ const getMedicalEntries = async (req, res) => {
   }
 };
 
+//get one entry by entry id
+const getOneEntry = async (req, res) => {
+  try {
+    const entry = await MedicalEntry.findById({ _id: req.params.id });
+    res.send(entry);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //delete entry and image from cloudinary
 
 const deleteEntry = async (req, res) => {
@@ -83,6 +93,7 @@ const editEntry = async (req, res) => {
 module.exports = {
   createMedicalEntry,
   getMedicalEntries,
+  getOneEntry,
   editEntry,
   deleteEntry,
 };
