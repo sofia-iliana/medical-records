@@ -43,26 +43,25 @@ function UserProfile() {
 
   //get all entries after searching
   function searchEntries() {
+    let filtered = [];
     if (search === "date") {
-      setFilteredEntries(
-        entries.filter((entry) => {
-          return entry.date <= "date";
-        })
-      );
+      filtered = entries.filter((entry) => {
+        return entry.date <= "date";
+      });
+      console.log(filtered);
     } else if (search === "specialty") {
-      setFilteredEntries(
-        entries.filter((entry) => {
-          return entry.specialty === specialty;
-        })
-      );
+      filtered = entries.filter((entry) => {
+        return entry.specialty === specialty;
+      });
+      console.log(filtered);
     } else {
-      setFilteredEntries(
-        entries.filter((entry) => {
-          return entry.kindOfTest === test;
-        })
-      );
+      filtered = entries.filter((entry) => {
+        return entry.kindOfTest === test;
+      });
+      console.log(filtered);
     }
-    console.log(filteredEntries);
+
+    setFilteredEntries(filtered);
   }
 
   return (
@@ -126,6 +125,7 @@ function UserProfile() {
       <button
         onClick={() => {
           searchEntries();
+          console.log(filteredEntries);
         }}
       >
         Search
