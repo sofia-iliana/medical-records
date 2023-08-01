@@ -66,7 +66,7 @@ function UserProfile() {
 
   return (
     <div>
-      <h2>Welcome</h2>
+      <h2>Welcome, {user.fullName}</h2>
       <div>
         <label htmlFor="searchBy">Search by:</label>
         <select
@@ -129,6 +129,13 @@ function UserProfile() {
         }}
       >
         Search
+      </button>
+      <button
+        onClick={() => {
+          navigate("/newEntry");
+        }}
+      >
+        Create new entry
       </button>
       <h4>Results</h4>
       <table>
