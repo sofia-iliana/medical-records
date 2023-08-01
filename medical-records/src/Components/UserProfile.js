@@ -146,7 +146,13 @@ function UserProfile() {
         </tr>
         {entries.map((entry) => {
           return (
-            <tr key={entry._id}>
+            <tr
+              key={entry._id}
+              onClick={() => {
+                localStorage.setItem("entry", entry._id);
+                navigate("/entry");
+              }}
+            >
               <th>{entry.date}</th>
               <th>{entry.specialty}</th>
               <th>{entry.kindOfTest}</th>

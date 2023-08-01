@@ -3,6 +3,7 @@ import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import NewEntry from "./Components/NewEntry";
 import UserProfile from "./Components/UserProfile";
+import Entry from "./Components/Entry";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/newEntry" element={<NewEntry />} />
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/entry" element={<Entry />} />
           </Routes>
         </div>
       </Router>
