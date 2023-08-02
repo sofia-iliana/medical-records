@@ -46,7 +46,7 @@ function UserProfile() {
     let filtered = [];
     if (search === "date") {
       filtered = entries.filter((entry) => {
-        return entry.date <= "date";
+        return entry.date >= date;
       });
       console.log(filtered);
     } else if (search === "specialty") {
@@ -58,9 +58,10 @@ function UserProfile() {
       filtered = entries.filter((entry) => {
         return entry.kindOfTest === test;
       });
-      console.log(filtered);
+      //console.log(filtered);
     }
 
+    console.log(date);
     setFilteredEntries(filtered);
   }
 

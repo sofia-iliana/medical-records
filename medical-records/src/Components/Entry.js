@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { MdOutlineEdit } from "react-icons/md";
 
 function Entry() {
   const [user, setUser] = useState({});
   const [entry, setEntry] = useState({});
   const [specialtyEdit, setSpecialtyEdit] = useState(false);
+  const [testEdit, setTestEdit] = useState(false);
+  const [reportEdit, setReportEdit] = useState(false);
+  const [specialty, setSpecialty] = useState(entry.specialty);
+  const [test, setTest] = useState(entry.kindOfTest);
+  const [report, setReport] = useState(entry.medicalReport);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,7 +59,29 @@ function Entry() {
     }
   }
 
-  function updateEntry() {}
+  function showSpecialty() {
+    setSpecialtyEdit(!specialtyEdit);
+  }
+
+  function showTest() {
+    setTestEdit(!testEdit);
+  }
+
+  function showReport() {
+    setReportEdit(!reportEdit);
+  }
+
+  function updateEntry() {
+    axios
+      .put(
+        "http://localhost:1212/entry/update/" + localStorage.getItem("entry"),
+        { specialty, medicalReport: report, kindOfTest: test }
+      )
+      .then(({ data }) => {
+        alert(data.msg);
+        window.location.reload(false);
+      });
+  }
 
   return (
     <div>
@@ -76,16 +104,54 @@ function Entry() {
       </div>
       <div>
         <p>Specialty: {entry.specialty}</p>
-        <button>edit</button>
-        <input></input>
+        <button
+          onClick={() => {
+            showSpecialty();
+          }}
+        >
+          <MdOutlineEdit></MdOutlineEdit>
+        </button>
+        {specialtyEdit && (
+          <input
+            onChange={(e) => {
+              setSpecialty(e.currentTarget.value);
+            }}
+          ></input>
+        )}
       </div>
       <div>
         <p>Medical Test: {entry.kindOfTest}</p>
-        <p></p>
+        <button
+          onClick={() => {
+            showTest();
+          }}
+        >
+          <MdOutlineEdit></MdOutlineEdit>
+        </button>
+        {testEdit && (
+          <input
+            onChange={(e) => {
+              setTest(e.target.value);
+            }}
+          ></input>
+        )}
       </div>
       <div>
         <p>Medical Report: {entry.medicalReport}</p>
-        <p></p>
+        <button
+          onClick={() => {
+            showReport();
+          }}
+        >
+          <MdOutlineEdit></MdOutlineEdit>
+        </button>
+        {reportEdit && (
+          <textarea
+            onChange={(e) => {
+              setReport(e.currentTarget.value);
+            }}
+          ></textarea>
+        )}
       </div>
       <div>
         <p>Image: </p>
@@ -99,7 +165,13 @@ function Entry() {
 
         <p></p>
       </div>
-      <button>Save changes</button>
+      <button
+        onClick={() => {
+          updateEntry();
+        }}
+      >
+        Save changes
+      </button>
       <button
         onClick={() => {
           deleteEntry();
