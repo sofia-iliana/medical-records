@@ -5,6 +5,7 @@ import axios from "axios";
 function Entry() {
   const [user, setUser] = useState({});
   const [entry, setEntry] = useState({});
+  const [specialtyEdit, setSpecialtyEdit] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +37,24 @@ function Entry() {
     }
   }, []);
 
+  function deleteEntry() {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this entry?"
+    );
+    if (shouldDelete) {
+      axios
+        .delete(
+          "http://localhost:1212/entry/delete/" + localStorage.getItem("entry")
+        )
+        .then(({ data }) => {
+          alert(data.msg);
+          navigate("/profile");
+        });
+    }
+  }
+
+  function updateEntry() {}
+
   return (
     <div>
       <h1>Medical Records</h1>
@@ -57,7 +76,8 @@ function Entry() {
       </div>
       <div>
         <p>Specialty: {entry.specialty}</p>
-        <p></p>
+        <button>edit</button>
+        <input></input>
       </div>
       <div>
         <p>Medical Test: {entry.kindOfTest}</p>
@@ -79,8 +99,21 @@ function Entry() {
 
         <p></p>
       </div>
-      <button>Update</button>
-      <button>Delete</button>
+      <button>Save changes</button>
+      <button
+        onClick={() => {
+          deleteEntry();
+        }}
+      >
+        Delete
+      </button>
+      <button
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
+        Back to profile
+      </button>
     </div>
   );
 }
