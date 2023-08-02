@@ -4,39 +4,79 @@ import axios from "axios";
 
 function Entry() {
   const [user, setUser] = useState({});
+  const [entry, setEntry] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      axios
+        .post("http://localhost:1212/user/verify", {
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => {
+          if (data._id) {
+            setUser(data);
+            console.log(data._id);
+            axios
+              .get(
+                "http://localhost:1212/entry/id/" +
+                  localStorage.getItem("entry")
+              )
+              .then(({ data }) => {
+                console.log(data);
+                setEntry(data);
+              });
+          } else {
+            navigate("/"); //go to login
+          }
+          console.log(data);
+        });
+    } else {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <div>
       <h1>Medical Records</h1>
       <div>
-        <p>Full Name:</p>
+        <p>Full Name: {user.fullName}</p>
         <p></p>
       </div>
       <div>
-        <p>Social Security Number:</p>
+        <p>Social Security Number: {user.socialSecNum}</p>
         <p></p>
       </div>
       <div>
-        <p>Date Of Birth:</p>
+        <p>Date Of Birth: {user.dateOfBirth}</p>
         <p></p>
       </div>
       <div>
-        <p>Date:</p>
+        <p>Date: {entry.date}</p>
         <p></p>
       </div>
       <div>
-        <p>Specialty:</p>
+        <p>Specialty: {entry.specialty}</p>
         <p></p>
       </div>
       <div>
-        <p>Medical Test:</p>
+        <p>Medical Test: {entry.kindOfTest}</p>
         <p></p>
       </div>
       <div>
-        <p>Medical Report:</p>
+        <p>Medical Report: {entry.medicalReport}</p>
         <p></p>
       </div>
       <div>
-        <p>Image:</p>
+        <p>Image: </p>
+        {entry.img ? (
+          <>
+            <img src={entry.img.url}></img>
+          </>
+        ) : (
+          <p>No image found</p>
+        )}
+
         <p></p>
       </div>
       <button>Update</button>
