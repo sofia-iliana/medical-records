@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import SignOutButton from "./SignOutButton";
 
 function UserProfile() {
   const [search, setSearch] = useState("date");
@@ -67,7 +68,8 @@ function UserProfile() {
 
   return (
     <div>
-      <h2>Welcome, {user.fullName}</h2>
+      <h2>Welcome {user.fullName}</h2>
+      <SignOutButton></SignOutButton>
       <div>
         <label htmlFor="searchBy">Search by:</label>
         <select

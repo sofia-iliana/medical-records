@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import SignOutButton from "./SignOutButton";
 
 function NewEntry() {
   const [image, setImage] = useState("");
@@ -74,6 +75,7 @@ function NewEntry() {
   return (
     <div>
       <h1>New Medical Entry</h1>
+      <SignOutButton></SignOutButton>
       <div>
         <label for="date">Date:</label>
         <DatePicker

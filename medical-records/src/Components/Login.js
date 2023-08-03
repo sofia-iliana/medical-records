@@ -38,7 +38,7 @@ function Login() {
       if (role === "patient") {
         sendPost("http://localhost:1212/user/login", "/profile");
       } else {
-        sendPost("http://localhost:1212/doctor/login", "/profile");
+        sendPost("http://localhost:1212/doctor/login", "/doctorProfile");
       }
     } else {
       alert("Enter email and password");

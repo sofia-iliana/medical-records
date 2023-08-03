@@ -56,7 +56,7 @@ function Signup() {
       } else {
         sendPost(
           "http://localhost:1212/doctor/signup",
-          "/profile",
+          "/doctorProfile",
           doctorSignup
         );
       }

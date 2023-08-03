@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
+import SignOutButton from "./SignOutButton";
 
 function Entry() {
   const [user, setUser] = useState({});
@@ -86,6 +87,7 @@ function Entry() {
   return (
     <div>
       <h1>Medical Records</h1>
+      <SignOutButton></SignOutButton>
       <div>
         <p>Full Name: {user.fullName}</p>
         <p></p>
