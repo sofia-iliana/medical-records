@@ -163,6 +163,7 @@ function UserProfile() {
           );
         })}
       </table>
+      {entries.length === 0 && <p>No entries found</p>}
     </div>
   );
 }

@@ -4,20 +4,95 @@ import axios from "axios";
 import SignOutButton from "./SignOutButton";
 
 function DoctorProfile() {
+  const [doctor, setDoctor] = useState("");
+  const [socialSecNum, setSocialSecNum] = useState("");
+  const [patients, setPatients] = useState([]);
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      axios
+        .post("http://localhost:1212/doctor/verify", {
+          token: localStorage.getItem("token"),
+        })
+        .then(({ data }) => {
+          if (data._id) {
+            setDoctor(data);
+            console.log(data._id);
+          } else {
+            navigate("/"); //go to login
+          }
+          console.log(data);
+        });
+    } else {
+      navigate("/"); // go to login
+    }
+  }, []);
+
+  function getPatients() {
+    if (socialSecNum) {
+      axios
+        .get("http://localhost:1212/user/ssn/" + socialSecNum)
+        .then(({ data }) => {
+          if (data) {
+            console.log(data);
+            setPatients(data);
+          }
+        });
+    }
+  }
+
+  function showValues() {
+    setShow(true);
+  }
+
   return (
     <div>
       <h2>Welcome </h2>
       <SignOutButton></SignOutButton>
       <h3>Search patient</h3>
-      <div>
-        <label htmlFor="fullName">Full Name:</label>
-        <input id="fullName"></input>
-      </div>
+
       <div>
         <label htmlFor="socialSecNum">Social Security Number:</label>
-        <input id="socialSecNum"></input>
+        <input
+          id="socialSecNum"
+          placeholder="Social security number"
+          onChange={(e) => {
+            setSocialSecNum(e.target.value);
+          }}
+        ></input>
       </div>
-      <button>Search</button>
+      <button
+        onClick={() => {
+          getPatients();
+          showValues();
+        }}
+      >
+        Search
+      </button>
+      {show && (
+        <div>
+          {patients.length !== 0 ? (
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Social Security Number</th>
+              </tr>
+              {patients.map((patient) => {
+                return (
+                  <tr key={patient._id}>
+                    <th>{patient.fullName}</th>
+                    <th>{patient.socialSecNum}</th>
+                  </tr>
+                );
+              })}
+            </table>
+          ) : (
+            <p>No patients found</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

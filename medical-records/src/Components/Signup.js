@@ -19,12 +19,14 @@ function Signup() {
     phone,
     socialSecNum,
     dateOfBirth,
+    role,
   });
   const [doctorSignup, setDoctorSignup] = useState({
     fullName,
     email,
     password,
     specialty,
+    role,
   });
 
   function toLogin() {
