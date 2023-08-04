@@ -13,6 +13,7 @@ function UserProfile() {
   const [test, setTest] = useState("");
   const [entries, setEntries] = useState([]);
   const [filteredEntries, setFilteredEntries] = useState([]);
+  const [show, setShow] = useState(true);
   const navigate = useNavigate();
 
   //get all entries for user after login
@@ -45,23 +46,28 @@ function UserProfile() {
   //get all entries after searching
   function searchEntries() {
     let filtered = [];
-    if (search === "date") {
+    if (search === "date" && date) {
       filtered = entries.filter((entry) => {
-        return entry.date >= date;
+        return (
+          entry.date >=
+          date.getDate() +
+            "/" +
+            (date.getMonth() + 1) +
+            "/" +
+            date.getFullYear()
+        );
       });
       console.log(filtered);
-    } else if (search === "specialty") {
+    } else if (search === "specialty" && specialty) {
       filtered = entries.filter((entry) => {
         return entry.specialty === specialty;
       });
       console.log(filtered);
-    } else {
+    } else if (test) {
       filtered = entries.filter((entry) => {
         return entry.kindOfTest === test;
       });
-      //console.log(filtered);
     }
-
     console.log(date);
     setFilteredEntries(filtered);
   }
@@ -128,7 +134,7 @@ function UserProfile() {
       <button
         onClick={() => {
           searchEntries();
-          console.log(filteredEntries);
+          setShow(false);
         }}
       >
         Search
@@ -141,29 +147,58 @@ function UserProfile() {
         Create new entry
       </button>
       <h4>Results</h4>
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Specialty</th>
-          <th>Medical Test</th>
-        </tr>
-        {entries.map((entry) => {
-          return (
-            <tr
-              key={entry._id}
-              onClick={() => {
-                localStorage.setItem("entry", entry._id);
-                navigate("/entry");
-              }}
-            >
-              <th>{entry.date}</th>
-              <th>{entry.specialty}</th>
-              <th>{entry.kindOfTest}</th>
+      {entries.length !== 0 ? (
+        show && (
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Specialty</th>
+              <th>Medical Test</th>
             </tr>
-          );
-        })}
-      </table>
-      {entries.length === 0 && <p>No entries found</p>}
+            {entries.map((entry) => {
+              return (
+                <tr
+                  key={entry._id}
+                  onClick={() => {
+                    localStorage.setItem("entry", entry._id);
+                    navigate("/entry");
+                  }}
+                >
+                  <th>{entry.date}</th>
+                  <th>{entry.specialty}</th>
+                  <th>{entry.kindOfTest}</th>
+                </tr>
+              );
+            })}
+          </table>
+        )
+      ) : (
+        <p>No entries found</p>
+      )}
+      {!show && filteredEntries.length !== 0 && (
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Specialty</th>
+            <th>Medical Test</th>
+          </tr>
+          {filteredEntries.map((entry) => {
+            return (
+              <tr
+                key={entry._id}
+                onClick={() => {
+                  localStorage.setItem("entry", entry._id);
+                  navigate("/entry");
+                }}
+              >
+                <th>{entry.date}</th>
+                <th>{entry.specialty}</th>
+                <th>{entry.kindOfTest}</th>
+              </tr>
+            );
+          })}
+        </table>
+      )}
     </div>
   );
 }
