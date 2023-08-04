@@ -64,6 +64,18 @@ const getOneEntry = async (req, res) => {
   }
 };
 
+//get entries social security number
+const getEntriesBySSN = async (req, res) => {
+  try {
+    const entries = await MedicalEntry.find({
+      socialSecNum: req.params.socialSecNum,
+    });
+    res.send(entries);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //delete entry and image from cloudinary
 
 const deleteEntry = async (req, res) => {

@@ -4,7 +4,13 @@ var jwt = require("jsonwebtoken");
 
 //sign up
 const userSignup = async (req, res) => {
-  const checkUser = await User.findOne({ email: req.body.email });
+  const checkUser = await User.findOne({
+    email: req.body.email,
+  });
+  if (req.body.role !== "patient") {
+    res.send({ msg: "Select sign up as patient" });
+    return;
+  }
   if (checkUser) {
     res.send({ msg: "You already have an account" });
     return;
@@ -18,6 +24,7 @@ const userSignup = async (req, res) => {
         phone: req.body.phone,
         socialSecNum: req.body.socialSecNum,
         dateOfBirth: req.body.dateOfBirth,
+        role: req.body.role,
       };
       const newUser = await User.create(user);
       var token = jwt.sign({ id: newUser._id }, "medical");
@@ -28,16 +35,23 @@ const userSignup = async (req, res) => {
 
 //log in
 const userLogin = async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({
+    email: req.body.email,
+  });
+
   if (user) {
-    bcrypt.compare(req.body.password, user.password, function (err, result) {
-      if (result) {
-        const token = jwt.sign({ id: user._id }, "medical");
-        res.send({ token });
-      } else {
-        res.send({ msg: "wrong password" });
-      }
-    });
+    if (user.role === "patient") {
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (result) {
+          const token = jwt.sign({ id: user._id }, "medical");
+          res.send({ token });
+        } else {
+          res.send({ msg: "wrong password" });
+        }
+      });
+    } else {
+      res.send({ msg: "Incorrect input values" });
+    }
   } else {
     res.send({ msg: "Wrong email" });
   }
@@ -53,7 +67,11 @@ const userVerify = async (req, res) => {
     if (payload) {
       const user = await User.findOne({ _id: payload.id });
       if (user) {
-        res.send(user);
+        if (user.role === "patient") {
+          res.send(user);
+        } else {
+          res.send({ msg: "Invalid token" });
+        }
       } else {
         res.send({ msg: "Invalid token" });
       }
@@ -65,8 +83,21 @@ const userVerify = async (req, res) => {
   }
 };
 
+//get user by social security number
+const getUserBySSN = async (req, res) => {
+  try {
+    const user = await User.find({
+      socialSecNum: req.params.socialSecNum,
+    });
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   userSignup,
   userLogin,
   userVerify,
+  getUserBySSN,
 };

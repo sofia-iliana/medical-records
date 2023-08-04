@@ -8,6 +8,7 @@ const User = mongoose.model("user", {
   phone: String,
   socialSecNum: String,
   dateOfBirth: String,
+  role: String,
 });
 
 module.exports = User;

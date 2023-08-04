@@ -4,7 +4,13 @@ var jwt = require("jsonwebtoken");
 
 //sign up
 const doctorSignup = async (req, res) => {
-  const checkDoctor = await Doctor.findOne({ email: req.body.email });
+  const checkDoctor = await Doctor.findOne({
+    email: req.body.email,
+  });
+  if (req.body.role !== "doctor") {
+    res.send({ msg: "Select sign up as doctor" });
+    return;
+  }
   if (checkDoctor) {
     res.send({ msg: "You already have an account" });
     return;
@@ -16,6 +22,7 @@ const doctorSignup = async (req, res) => {
         email: req.body.email,
         password: hash,
         specialty: req.body.specialty,
+        role: req.body.role,
       };
       const newDoctor = await Doctor.create(doctor);
       var token = jwt.sign({ id: newDoctor._id }, "medical");
@@ -26,16 +33,26 @@ const doctorSignup = async (req, res) => {
 
 //log in
 const doctorLogin = async (req, res) => {
-  const doctor = await Doctor.findOne({ email: req.body.email });
+  const doctor = await Doctor.findOne({
+    email: req.body.email,
+  });
   if (doctor) {
-    bcrypt.compare(req.body.password, doctor.password, function (err, result) {
-      if (result) {
-        const token = jwt.sign({ id: doctor._id }, "medical");
-        res.send({ token });
-      } else {
-        res.send({ msg: "wrong password" });
-      }
-    });
+    if (doctor.role === "doctor") {
+      bcrypt.compare(
+        req.body.password,
+        doctor.password,
+        function (err, result) {
+          if (result) {
+            const token = jwt.sign({ id: doctor._id }, "medical");
+            res.send({ token });
+          } else {
+            res.send({ msg: "wrong password" });
+          }
+        }
+      );
+    } else {
+      res.send({ msg: "Incorrect input values" });
+    }
   } else {
     res.send({ msg: "Wrong email" });
   }
@@ -51,7 +68,11 @@ const doctorVerify = async (req, res) => {
     if (payload) {
       const doctor = await Doctor.findOne({ _id: payload.id });
       if (doctor) {
-        res.send(doctor);
+        if (doctor.role === "doctor") {
+          res.send(doctor);
+        } else {
+          res.send({ msg: "Invalid token" });
+        }
       } else {
         res.send({ msg: "Invalid token" });
       }

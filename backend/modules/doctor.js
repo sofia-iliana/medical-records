@@ -6,6 +6,7 @@ const Doctor = mongoose.model("doctor", {
   email: String,
   password: String,
   specialty: String,
+  role: String,
 });
 
 module.exports = Doctor;
