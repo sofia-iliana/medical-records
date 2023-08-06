@@ -60,12 +60,12 @@ function UserProfile() {
       console.log(filtered);
     } else if (search === "specialty" && specialty) {
       filtered = entries.filter((entry) => {
-        return entry.specialty === specialty;
+        return entry.specialty.toLowerCase() === specialty.toLowerCase();
       });
       console.log(filtered);
     } else if (test) {
       filtered = entries.filter((entry) => {
-        return entry.kindOfTest === test;
+        return entry.kindOfTest.toLowerCase() === test.toLowerCase();
       });
     }
     console.log(date);

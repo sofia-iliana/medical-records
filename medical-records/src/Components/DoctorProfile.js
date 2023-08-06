@@ -8,6 +8,7 @@ function DoctorProfile() {
   const [socialSecNum, setSocialSecNum] = useState("");
   const [patients, setPatients] = useState([]);
   const [show, setShow] = useState(false);
+  const [patientId, setPatientId] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,13 +44,29 @@ function DoctorProfile() {
     }
   }
 
+  function sendRequest() {
+    if (patientId) {
+      axios
+        .post("http://localhost:1212/request/create", {
+          doctorName: doctor.fullName,
+          doctorId: doctor._id,
+          userId: patientId,
+        })
+        .then(({ data }) => {
+          if (data) {
+            alert(data.msg);
+          }
+        });
+    }
+  }
+
   function showValues() {
     setShow(true);
   }
 
   return (
     <div>
-      <h2>Welcome </h2>
+      <h2>Welcome {doctor.fullName}</h2>
       <SignOutButton></SignOutButton>
       <h3>Search patient</h3>
 
@@ -81,7 +98,13 @@ function DoctorProfile() {
               </tr>
               {patients.map((patient) => {
                 return (
-                  <tr key={patient._id}>
+                  <tr
+                    key={patient._id}
+                    onClick={() => {
+                      setPatientId(patient._id);
+                      console.log(patientId);
+                    }}
+                  >
                     <th>{patient.fullName}</th>
                     <th>{patient.socialSecNum}</th>
                   </tr>

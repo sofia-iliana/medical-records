@@ -12,6 +12,18 @@ const getRequests = async (req, res) => {
   }
 };
 
+//get requests for doctor by doctor id
+const getRequestsDoctorSide = async (req, res) => {
+  try {
+    const doctor = await Access.find({
+      doctorId: req.params.doctorId,
+    });
+    res.send(doctor);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //create a request from the doctor to the patient
 const createRequest = async (req, res) => {
   try {
@@ -44,6 +56,7 @@ const deleteRequest = async (req, res) => {
 
 module.exports = {
   getRequests,
+  getRequestsDoctorSide,
   createRequest,
   giveAccess,
   deleteRequest,

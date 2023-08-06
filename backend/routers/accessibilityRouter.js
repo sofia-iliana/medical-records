@@ -3,6 +3,10 @@ const accessibilityController = require("../controllers/accessibilityController"
 
 router.post("/request/create", accessibilityController.createRequest);
 router.get("/request/get/:userId", accessibilityController.getRequests);
+router.get(
+  "/request/getForDoctor/:doctorId",
+  accessibilityController.getRequestsDoctorSide
+);
 router.delete("/request/delete/:id", accessibilityController.deleteRequest);
 router.put("/request/access/:id", accessibilityController.giveAccess);
 
