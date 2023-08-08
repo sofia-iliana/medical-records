@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
 import SignOutButton from "./SignOutButton";
+import PatientNav from "./PatientNav";
 
 function Entry() {
   const [user, setUser] = useState({});
@@ -86,6 +87,7 @@ function Entry() {
 
   return (
     <div>
+      <PatientNav userId={user._id}></PatientNav>
       <h1>Medical Records</h1>
       <SignOutButton></SignOutButton>
       <div>

@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import SignOutButton from "./SignOutButton";
+import PatientNav from "./PatientNav";
 
 function UserProfile() {
   const [search, setSearch] = useState("date");
@@ -74,6 +75,7 @@ function UserProfile() {
 
   return (
     <div>
+      <PatientNav userId={user._id}></PatientNav>
       <h2>Welcome {user.fullName}</h2>
       <SignOutButton></SignOutButton>
       <div>

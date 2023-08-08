@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SignOutButton from "./SignOutButton";
+import DoctorNav from "./DoctorNav";
 
 function DoctorProfile() {
   const [doctor, setDoctor] = useState("");
@@ -31,6 +32,7 @@ function DoctorProfile() {
     }
   }, []);
 
+  //find patients with social security number
   function getPatients() {
     if (socialSecNum) {
       axios
@@ -44,8 +46,10 @@ function DoctorProfile() {
     }
   }
 
+  //send request to patient to view medical record
   function sendRequest() {
     if (patientId) {
+      console.log(patientId);
       axios
         .post("http://localhost:1212/request/create", {
           doctorName: doctor.fullName,
@@ -66,8 +70,10 @@ function DoctorProfile() {
 
   return (
     <div>
-      <h2>Welcome {doctor.fullName}</h2>
+      <DoctorNav doctorId={doctor._id}></DoctorNav>
       <SignOutButton></SignOutButton>
+      <h2>Welcome {doctor.fullName}</h2>
+
       <h3>Search patient</h3>
 
       <div>
@@ -102,7 +108,7 @@ function DoctorProfile() {
                     key={patient._id}
                     onClick={() => {
                       setPatientId(patient._id);
-                      console.log(patientId);
+                      sendRequest();
                     }}
                   >
                     <th>{patient.fullName}</th>

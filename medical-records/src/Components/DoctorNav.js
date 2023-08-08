@@ -5,14 +5,14 @@ import { MdNotifications } from "react-icons/md";
 import "../Notification.css";
 import { RxDropdownMenu } from "react-icons/rx";
 
-function PatientNav(props) {
+function DoctorNav(props) {
   const [results, setResults] = useState([]);
   const [show, setShow] = useState(false);
   const [requestId, setRequestId] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:1212/request/get/" + props.userId)
+      .get("http://localhost:1212/request/getForDoctor/" + props.doctorId)
       .then(({ data }) => {
         setResults(data);
         console.log(results);
@@ -62,7 +62,7 @@ function PatientNav(props) {
                     giveAccess();
                   }}
                 >
-                  accept
+                  View
                 </button>
               </li>
             );
@@ -73,4 +73,4 @@ function PatientNav(props) {
   );
 }
 
-export default PatientNav;
+export default DoctorNav;
