@@ -1,7 +1,7 @@
 const Access = require("../modules/accessibility");
 
 //get requests for user by user id
-const getRequests = async (req, res) => {
+const getRequestsForUser = async (req, res) => {
   try {
     const user = await Access.find({
       userId: req.params.userId,
@@ -19,6 +19,19 @@ const getRequestsDoctorSide = async (req, res) => {
       doctorId: req.params.doctorId,
     });
     res.send(doctor);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//get request by user and doctor id
+const getRequest = async (req, res) => {
+  try {
+    const entry = await Access.find({
+      doctorId: req.params.doctorId,
+      userId: req.params.userId,
+    });
+    res.send(entry);
   } catch (error) {
     console.log(error);
   }
@@ -55,8 +68,9 @@ const deleteRequest = async (req, res) => {
 };
 
 module.exports = {
-  getRequests,
+  getRequestsForUser,
   getRequestsDoctorSide,
+  getRequest,
   createRequest,
   giveAccess,
   deleteRequest,

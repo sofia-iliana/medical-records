@@ -10,6 +10,7 @@ function DoctorProfile() {
   const [patients, setPatients] = useState([]);
   const [show, setShow] = useState(false);
   const [patientId, setPatientId] = useState("");
+  const [patientName, setPatientName] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +56,7 @@ function DoctorProfile() {
           doctorName: doctor.fullName,
           doctorId: doctor._id,
           userId: patientId,
+          userName: patientName,
         })
         .then(({ data }) => {
           if (data) {
@@ -108,6 +110,7 @@ function DoctorProfile() {
                     key={patient._id}
                     onClick={() => {
                       setPatientId(patient._id);
+                      setPatientName(patient.fullName);
                       sendRequest();
                     }}
                   >

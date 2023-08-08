@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdNotifications } from "react-icons/md";
 import "../Notification.css";
-import { RxDropdownMenu } from "react-icons/rx";
+import { LuAlignJustify } from "react-icons/lu";
 
 function PatientNav(props) {
   const [results, setResults] = useState([]);
@@ -44,7 +44,7 @@ function PatientNav(props) {
           <MdNotifications className="bell"></MdNotifications>
         </button>
         <button className="menu">
-          <RxDropdownMenu></RxDropdownMenu>
+          <LuAlignJustify></LuAlignJustify>
         </button>
       </div>
       {results.length !== 0 && <div className="number">{results.length}</div>}

@@ -6,7 +6,7 @@ import UserProfile from "./Components/UserProfile";
 import Entry from "./Components/Entry";
 import DoctorProfile from "./Components/DoctorProfile";
 import EntryForDoctor from "./Components/EntryForDoctor";
-import GetResults from "./Components/EntriesForDoctor";
+import EntriesForDoctor from "./Components/EntriesForDoctor";
 import PatientNav from "./Components/PatientNav";
 import "./App.css";
 
@@ -22,7 +22,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/entry" element={<Entry />} />
             <Route path="/doctorProfile" element={<DoctorProfile />} />
-            <Route path="/patientNav" element={<PatientNav />} />
+            <Route path="/doctorEntries" element={<EntriesForDoctor />} />
           </Routes>
         </div>
       </Router>

@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdNotifications } from "react-icons/md";
 import "../Notification.css";
-import { RxDropdownMenu } from "react-icons/rx";
+import { LuAlignJustify } from "react-icons/lu";
 
 function DoctorNav(props) {
   const [results, setResults] = useState([]);
   const [show, setShow] = useState(false);
   const [requestId, setRequestId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -23,7 +24,7 @@ function DoctorNav(props) {
     setShow(!show);
   }
 
-  function giveAccess() {
+  function viewEntries() {
     axios
       .put("http://localhost:1212/request/access/" + requestId, { allow: true })
       .then(({ data }) => {
@@ -44,7 +45,7 @@ function DoctorNav(props) {
           <MdNotifications className="bell"></MdNotifications>
         </button>
         <button className="menu">
-          <RxDropdownMenu></RxDropdownMenu>
+          <LuAlignJustify></LuAlignJustify>
         </button>
       </div>
       {results.length !== 0 && <div className="number">{results.length}</div>}
@@ -54,12 +55,12 @@ function DoctorNav(props) {
           {results.map((result) => {
             return (
               <li key={result._id}>
-                Doctor {result.doctorName} requests access to your medical
-                records
+                Patient {result.userName} gave you access to medical records
                 <button
                   onClick={() => {
                     setRequestId(result._id);
-                    giveAccess();
+                    localStorage.setItem("user", result.userId);
+                    navigate("/doctorEntries");
                   }}
                 >
                   View
