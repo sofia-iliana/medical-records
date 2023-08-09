@@ -24,15 +24,6 @@ function DoctorNav(props) {
     setShow(!show);
   }
 
-  function viewEntries() {
-    axios
-      .put("http://localhost:1212/request/access/" + requestId, { allow: true })
-      .then(({ data }) => {
-        alert(data.msg);
-      });
-    console.log(requestId);
-  }
-
   return (
     <div className="notificationContainer">
       <div className="icon">
@@ -59,7 +50,7 @@ function DoctorNav(props) {
                 <button
                   onClick={() => {
                     setRequestId(result._id);
-                    localStorage.setItem("user", result.userId);
+                    localStorage.setItem("accessRequest", result._id);
                     navigate("/doctorEntries");
                   }}
                 >

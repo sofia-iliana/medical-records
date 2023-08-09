@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
+import DisconnectButton from "./DisconnectFromEntries";
+import DoctorNav from "./DoctorNav";
 import SignOutButton from "./SignOutButton";
 
 function EntryForDoctor() {
@@ -70,6 +72,7 @@ function EntryForDoctor() {
 
   return (
     <div>
+      <DoctorNav doctorId={doctor._id}></DoctorNav>
       <h1>Medical Records</h1>
       <SignOutButton></SignOutButton>
       <div>
@@ -162,6 +165,7 @@ function EntryForDoctor() {
       >
         Back to profile
       </button>
+      <DisconnectButton></DisconnectButton>
     </div>
   );
 }

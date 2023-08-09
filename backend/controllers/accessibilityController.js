@@ -24,12 +24,11 @@ const getRequestsDoctorSide = async (req, res) => {
   }
 };
 
-//get request by user and doctor id
+//get request by id
 const getRequest = async (req, res) => {
   try {
     const entry = await Access.find({
-      doctorId: req.params.doctorId,
-      userId: req.params.userId,
+      _id: req.params.id,
     });
     res.send(entry);
   } catch (error) {

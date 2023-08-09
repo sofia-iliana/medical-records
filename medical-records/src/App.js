@@ -7,7 +7,6 @@ import Entry from "./Components/Entry";
 import DoctorProfile from "./Components/DoctorProfile";
 import EntryForDoctor from "./Components/EntryForDoctor";
 import EntriesForDoctor from "./Components/EntriesForDoctor";
-import PatientNav from "./Components/PatientNav";
 import "./App.css";
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
             <Route path="/entry" element={<Entry />} />
             <Route path="/doctorProfile" element={<DoctorProfile />} />
             <Route path="/doctorEntries" element={<EntriesForDoctor />} />
+            <Route path="/doctorEntry" element={<EntryForDoctor />} />
           </Routes>
         </div>
       </Router>
