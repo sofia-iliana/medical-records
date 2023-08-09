@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import axios from "axios";
 
 function Login() {
@@ -47,11 +48,16 @@ function Login() {
 
   return (
     <div className="container">
+      <div className="header">
+        <h1>Medical Records</h1>
+      </div>
+
       <div className="formContainer">
-        <h1>Login</h1>
-        <div>
+        <h1 className="login">Login</h1>
+        <div className="roleContainer">
           <label htmlFor="role">Login as:</label>
           <select
+            className="roleSelect"
             name="role"
             id="role"
             onChange={(e) => {
@@ -63,9 +69,10 @@ function Login() {
           </select>
         </div>
 
-        <div>
+        <div className="inputs">
           <label htmlFor="email">Email:</label>
           <input
+            className="inputField"
             id="email"
             placeholder="Email"
             onChange={(e) => {
@@ -73,9 +80,10 @@ function Login() {
             }}
           ></input>
         </div>
-        <div>
+        <div className="inputs">
           <label htmlFor="password">Password:</label>
           <input
+            className="inputField"
             id="password"
             placeholder="Password"
             onChange={(e) => {
@@ -85,6 +93,7 @@ function Login() {
         </div>
 
         <button
+          className="btn"
           onClick={() => {
             login();
           }}

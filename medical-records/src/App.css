@@ -1,18 +1,10 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 a {
   text-decoration: underline;
   color: blue;
-}
-
-.container {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-
-.formContainer {
-  display: grid;
-  justify-content: center;
-  grid-gap: 10px;
 }
 
 h1,
@@ -20,7 +12,79 @@ p {
   text-align: center;
 }
 
+.login {
+  color: rgb(2, 2, 60);
+}
+
 .mainContainer {
   display: grid;
   grid-template-rows: auto auto;
+}
+
+/*login*/
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  justify-self: center;
+  display: grid;
+  justify-content: center;
+  grid-gap: 10px;
+  background-color: rgb(232, 229, 229);
+  border-radius: 10px;
+  padding: 30px;
+  border: 1px solid rgb(2, 2, 60);
+  margin-top: 100px;
+  max-width: 350px;
+}
+
+.btn {
+  min-width: fit-content;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  justify-self: center;
+  border: none;
+  background-color: rgb(2, 2, 60);
+  color: beige;
+  margin-top: 15px;
+}
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.roleSelect {
+  margin-left: 20px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid gray;
+  width: 80px;
+  height: 25px;
+}
+
+.roleContainer {
+  margin-bottom: 10px;
+}
+
+.inputField {
+  border-radius: 4px;
+  height: 25px;
+  border: 1px solid gray;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgb(2, 2, 60);
+  color: beige;
+  min-width: 100vw;
 }
