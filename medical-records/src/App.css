@@ -19,3 +19,8 @@ h1,
 p {
   text-align: center;
 }
+
+.mainContainer {
+  display: grid;
+  grid-template-rows: auto auto;
+}

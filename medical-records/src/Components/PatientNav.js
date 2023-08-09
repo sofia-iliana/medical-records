@@ -8,7 +8,9 @@ import { LuAlignJustify } from "react-icons/lu";
 function PatientNav(props) {
   const [results, setResults] = useState([]);
   const [show, setShow] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [requestId, setRequestId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -22,6 +24,15 @@ function PatientNav(props) {
   function showHide() {
     setShow(!show);
   }
+
+  function showHideMenu() {
+    setShowMenu(!showMenu);
+  }
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   function giveAccess() {
     axios
@@ -43,12 +54,42 @@ function PatientNav(props) {
         >
           <MdNotifications className="bell"></MdNotifications>
         </button>
-        <button className="menu">
+        <button
+          className="menu"
+          onClick={() => {
+            showHideMenu();
+          }}
+        >
           <LuAlignJustify></LuAlignJustify>
         </button>
       </div>
-      {results.length !== 0 && <div className="number">{results.length}</div>}
+      {showMenu && (
+        <ul className="msgs">
+          <li
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Profile
+          </li>
+          <li
+            onClick={() => {
+              navigate("/newEntry");
+            }}
+          >
+            Create New Entry
+          </li>
+          <li
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign Out
+          </li>
+        </ul>
+      )}
 
+      {results.length !== 0 && <div className="number">{results.length}</div>}
       {show && (
         <ul className="msgs">
           {results.map((result) => {

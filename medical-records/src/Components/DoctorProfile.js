@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SignOutButton from "./SignOutButton";
 import DoctorNav from "./DoctorNav";
 
 function DoctorProfile() {
@@ -73,7 +72,7 @@ function DoctorProfile() {
   return (
     <div>
       <DoctorNav doctorId={doctor._id}></DoctorNav>
-      <SignOutButton></SignOutButton>
+
       <h2>Welcome {doctor.fullName}</h2>
 
       <h3>Search patient</h3>

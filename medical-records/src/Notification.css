@@ -7,13 +7,14 @@ li {
 
 .notificationContainer {
   display: grid;
-  position: absolute;
+
   top: 0px;
   left: 0px;
   width: 100%;
   justify-content: end;
   background-color: rgb(35, 35, 82);
 }
+position: fixed;
 
 .icon {
   display: grid;

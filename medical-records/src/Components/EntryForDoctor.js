@@ -4,7 +4,6 @@ import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
 import DisconnectButton from "./DisconnectFromEntries";
 import DoctorNav from "./DoctorNav";
-import SignOutButton from "./SignOutButton";
 
 function EntryForDoctor() {
   const [doctor, setDoctor] = useState({});
@@ -59,22 +58,27 @@ function EntryForDoctor() {
   }
 
   function updateEntry() {
-    axios
-      .put(
-        "http://localhost:1212/entry/update/" + localStorage.getItem("entry"),
-        { specialty, medicalReport: report, kindOfTest: test }
-      )
-      .then(({ data }) => {
-        alert(data.msg);
-        window.location.reload(false);
-      });
+    const shouldUpdate = window.confirm(
+      "Are you sure you want to save the changes?"
+    );
+    if (shouldUpdate) {
+      axios
+        .put(
+          "http://localhost:1212/entry/update/" + localStorage.getItem("entry"),
+          { specialty, medicalReport: report, kindOfTest: test }
+        )
+        .then(({ data }) => {
+          alert(data.msg);
+          window.location.reload(false);
+        });
+    }
   }
 
   return (
     <div>
       <DoctorNav doctorId={doctor._id}></DoctorNav>
       <h1>Medical Records</h1>
-      <SignOutButton></SignOutButton>
+
       <div>
         <p>Full Name: {entry.fullName}</p>
         <p></p>
@@ -156,14 +160,6 @@ function EntryForDoctor() {
         }}
       >
         Save changes
-      </button>
-
-      <button
-        onClick={() => {
-          navigate("/doctorProfile");
-        }}
-      >
-        Back to profile
       </button>
       <DisconnectButton></DisconnectButton>
     </div>

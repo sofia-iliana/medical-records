@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import SignOutButton from "./SignOutButton";
 import DisconnectButton from "./DisconnectFromEntries";
 import DoctorNav from "./DoctorNav";
 import axios from "axios";
@@ -98,7 +97,7 @@ function EntriesForDoctor() {
     <div>
       <DoctorNav doctorId={doctor._id}></DoctorNav>
       <h2>Welcome {doctor.fullName}</h2>
-      <SignOutButton></SignOutButton>
+
       <div>
         <label htmlFor="searchBy">Search by:</label>
         <select

@@ -8,6 +8,7 @@ import { LuAlignJustify } from "react-icons/lu";
 function DoctorNav(props) {
   const [results, setResults] = useState([]);
   const [show, setShow] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [requestId, setRequestId] = useState("");
   const navigate = useNavigate();
 
@@ -24,6 +25,15 @@ function DoctorNav(props) {
     setShow(!show);
   }
 
+  function showHideMenu() {
+    setShowMenu(!showMenu);
+  }
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="notificationContainer">
       <div className="icon">
@@ -35,10 +45,34 @@ function DoctorNav(props) {
         >
           <MdNotifications className="bell"></MdNotifications>
         </button>
-        <button className="menu">
+        <button
+          className="menu"
+          onClick={() => {
+            showHideMenu();
+          }}
+        >
           <LuAlignJustify></LuAlignJustify>
         </button>
       </div>
+      {showMenu && (
+        <ul className="msgs">
+          <li
+            onClick={() => {
+              navigate("/doctorProfile");
+            }}
+          >
+            Profile
+          </li>
+          <li
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign Out
+          </li>
+        </ul>
+      )}
+
       {results.length !== 0 && <div className="number">{results.length}</div>}
 
       {show && (
