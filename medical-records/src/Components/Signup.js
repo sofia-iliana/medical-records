@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoIosPulse } from "react-icons/io";
-import { MdCopyright } from "react-icons/md";
+import Footer from "./Footer";
 import axios from "axios";
 
 function Signup() {
@@ -229,11 +229,7 @@ function Signup() {
           </a>
         </p>
       </div>
-      <div className="footer">
-        <p>
-          Copyright <MdCopyright></MdCopyright> 2023 All Rights Reserved
-        </p>
-      </div>
+      <Footer></Footer>
     </div>
   );
 }

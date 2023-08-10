@@ -120,12 +120,14 @@ p {
   font-size: small;
 }
 
+/*footer*/
 .footer {
   justify-self: end;
   position: fixed;
-  color: beige;
+  color: #636363;
   bottom: 0;
-  background-color: #706f6f;
+  /*background-color: #706f6f;*/
+  border-top: 1px solid #636363;
   width: 100vw;
   font-size: small;
 }

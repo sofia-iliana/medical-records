@@ -1,3 +1,7 @@
+body {
+  min-height: 100%;
+}
+
 li {
   list-style: none;
   border: 1px solid black;
@@ -6,13 +10,28 @@ li {
 }
 
 .notificationContainer {
-  display: grid;
-  position: fixed;
-  top: 0px;
-  left: 0px;
+  display: flex;
+  padding: 0;
+  height: max-content;
   width: 100%;
-  justify-content: end;
-  background-color: rgb(35, 35, 82);
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(2, 2, 60);
+  position: sticky;
+  left: 0;
+  top: 0;
+}
+
+.profileTitle {
+  justify-self: left;
+  color: beige;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  width: max-content;
+}
+.pulse {
+  font-size: xx-large;
 }
 
 .icon {
@@ -20,8 +39,7 @@ li {
   grid-template-columns: auto auto auto;
   justify-content: end;
   height: 60px;
-  background-color: rgb(35, 35, 82);
-  min-width: 100vw;
+  background-color: rgb(2, 2, 60);
 }
 
 .bell {
@@ -30,11 +48,10 @@ li {
 }
 
 .notificationBtn {
-  background-color: rgb(35, 35, 82);
+  background-color: rgb(2, 2, 60);
   border-radius: 50%;
   margin-right: 25px;
-  border: 2px solid beige;
-  z-index: 1;
+  border: none;
   margin-top: 6px;
   margin-bottom: 6px;
 }
@@ -43,12 +60,13 @@ li {
   z-index: 2;
   position: fixed;
   top: 27px;
-  right: 50px;
-  padding: 1px 7px;
+  right: 62px;
+  padding: 1px 5px;
   border-radius: 50%;
   background: red;
   color: white;
   margin-right: 28px;
+  font-size: small;
 }
 
 .msgs {
@@ -61,7 +79,7 @@ li {
 .menu {
   margin-right: 15px;
   color: beige;
-  background-color: rgb(35, 35, 82);
+  background-color: rgb(2, 2, 60);
   border: none;
   font-size: 40px;
   margin-top: 8px;
