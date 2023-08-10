@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { IoIosPulse } from "react-icons/io";
+import { MdCopyright } from "react-icons/md";
 import axios from "axios";
 
 function Login() {
@@ -49,7 +50,8 @@ function Login() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Medical Records</h1>
+        <IoIosPulse className="pulseIcon"></IoIosPulse>
+        <h1 className="title">Medical Records</h1>
       </div>
 
       <div className="formContainer">
@@ -100,7 +102,7 @@ function Login() {
         >
           Login
         </button>
-        <p>
+        <p className="textLink">
           If you don't have an account{" "}
           <a
             onClick={() => {
@@ -110,6 +112,11 @@ function Login() {
             {" "}
             Signup
           </a>
+        </p>
+      </div>
+      <div className="footer">
+        <p>
+          Copyright <MdCopyright></MdCopyright> 2023 All Rights Reserved
         </p>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { IoIosPulse } from "react-icons/io";
+import { MdCopyright } from "react-icons/md";
 import axios from "axios";
 
 function Signup() {
@@ -69,11 +71,16 @@ function Signup() {
 
   return (
     <div className="container">
+      <div className="header">
+        <IoIosPulse className="pulseIcon"></IoIosPulse>
+        <h1 className="title">Medical Records</h1>
+      </div>
       <div className="formContainer">
-        <h1>Signup</h1>
-        <div>
-          <label htmlFor="role">Signup as:</label>
+        <h1 className="login">Sign up</h1>
+        <div className="roleContainer">
+          <label htmlFor="role">Sign up as:</label>
           <select
+            className="roleSelect"
             name="role"
             id="role"
             onChange={(e) => {
@@ -87,9 +94,10 @@ function Signup() {
 
         {role === "doctor" ? (
           <div>
-            <div>
+            <div className="inputs">
               <label htmlFor="fullName">Full Name:</label>
               <input
+                className="inputField"
                 id="fullName"
                 placeholder="Full name"
                 onChange={(e) => {
@@ -97,9 +105,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="specialty">Specialty:</label>
               <input
+                className="inputField"
                 id="specialty"
                 placeholder="Specialty"
                 onChange={(e) => {
@@ -107,9 +116,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="email">Email:</label>
               <input
+                className="inputField"
                 id="email"
                 placeholder="Email"
                 onChange={(e) => {
@@ -117,9 +127,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="password">Password:</label>
               <input
+                className="inputField"
                 id="password"
                 placeholder="Password"
                 onChange={(e) => {
@@ -130,9 +141,10 @@ function Signup() {
           </div>
         ) : (
           <div>
-            <div>
+            <div className="inputs">
               <label htmlFor="fullName">Full Name:</label>
               <input
+                className="inputField"
                 id="fullName"
                 placeholder="Full name"
                 onChange={(e) => {
@@ -140,9 +152,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="socialSecNum">Social Security Number:</label>
               <input
+                className="inputField"
                 id="socialSecNum"
                 placeholder="Social security number"
                 onChange={(e) => {
@@ -150,9 +163,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="dateOfBirth">Date Of Birth:</label>
               <input
+                className="inputField"
                 id="dateOfBirth"
                 placeholder="Date of birth"
                 onChange={(e) => {
@@ -160,9 +174,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="phone">Phone Number:</label>
               <input
+                className="inputField"
                 id="phone"
                 placeholder="Phone number"
                 onChange={(e) => {
@@ -170,9 +185,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="email">Email:</label>
               <input
+                className="inputField"
                 id="email"
                 placeholder="Email"
                 onChange={(e) => {
@@ -180,9 +196,10 @@ function Signup() {
                 }}
               ></input>
             </div>
-            <div>
+            <div className="inputs">
               <label htmlFor="password">Password:</label>
               <input
+                className="inputField"
                 id="password"
                 placeholder="Password"
                 onChange={(e) => {
@@ -193,13 +210,14 @@ function Signup() {
           </div>
         )}
         <button
+          className="btn"
           onClick={() => {
             signup();
           }}
         >
-          Signup
+          Sign up
         </button>
-        <p>
+        <p className="textLink">
           If you have an account{" "}
           <a
             onClick={() => {
@@ -209,6 +227,11 @@ function Signup() {
             {" "}
             Login
           </a>
+        </p>
+      </div>
+      <div className="footer">
+        <p>
+          Copyright <MdCopyright></MdCopyright> 2023 All Rights Reserved
         </p>
       </div>
     </div>
