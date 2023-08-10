@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdNotifications } from "react-icons/md";
-import "../Notification.css";
+import "./style/Notification.css";
 import { LuAlignJustify } from "react-icons/lu";
 
 function DoctorNav(props) {

@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PatientNav from "./PatientNav";
+import Footer from "./Footer";
 
 function UserProfile() {
   const [search, setSearch] = useState("date");
@@ -77,9 +78,11 @@ function UserProfile() {
       <PatientNav userId={user._id}></PatientNav>
       <div>
         <h2>Welcome {user.fullName}</h2>
-        <div>
+        <h4>View your medical history</h4>
+        <div className="profileInput">
           <label htmlFor="searchBy">Search by:</label>
           <select
+            className="roleSelect"
             name="searchBy"
             id="searchBy"
             onChange={(e) => {
@@ -94,9 +97,10 @@ function UserProfile() {
         {(() => {
           if (search === "date") {
             return (
-              <div>
+              <div className="profileInput">
                 <label htmlFor="date">Date:</label>
                 <DatePicker
+                  className="inputField"
                   id="date"
                   selected={date}
                   dateFormat="dd/MM/yyyy"
@@ -108,9 +112,10 @@ function UserProfile() {
             );
           } else if (search === "specialty") {
             return (
-              <div>
+              <div className="profileInput">
                 <label htmlFor="specialty">Specialty:</label>
                 <input
+                  className="inputField"
                   id="specialty"
                   onChange={(e) => {
                     setSpecialty(e.target.value);
@@ -120,9 +125,10 @@ function UserProfile() {
             );
           } else {
             return (
-              <div>
+              <div className="profileInput">
                 <label htmlFor="test">Medical Test:</label>
                 <input
+                  className="inputField"
                   id="test"
                   onChange={(e) => {
                     setTest(e.target.value);
@@ -133,6 +139,7 @@ function UserProfile() {
           }
         })()}
         <button
+          className="searchBtn"
           onClick={() => {
             searchEntries();
             setShow(false);
@@ -140,13 +147,7 @@ function UserProfile() {
         >
           Search
         </button>
-        <button
-          onClick={() => {
-            navigate("/newEntry");
-          }}
-        >
-          Create new entry
-        </button>
+
         <h4>Results</h4>
         {entries.length !== 0 ? (
           show && (
@@ -201,6 +202,7 @@ function UserProfile() {
           </table>
         )}
       </div>
+      <Footer></Footer>
     </div>
   );
 }

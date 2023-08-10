@@ -1,0 +1,94 @@
+body {
+  min-height: 100%;
+  padding-top: 65px;
+}
+
+li {
+  list-style: none;
+  border: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.notificationContainer {
+  display: flex;
+  padding: 0;
+  height: max-content;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(2, 2, 60);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.profileTitle {
+  margin-left: 7px;
+  justify-self: left;
+  color: beige;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  width: max-content;
+}
+.pulse {
+  margin-right: 4px;
+  font-size: xx-large;
+}
+
+.icon {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: end;
+  height: 60px;
+  background-color: rgb(2, 2, 60);
+}
+
+.bell {
+  font-size: xx-large;
+  color: beige;
+}
+
+.notificationBtn {
+  background-color: rgb(2, 2, 60);
+  border-radius: 50%;
+  margin-right: 25px;
+  border: none;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.number {
+  z-index: 2;
+  position: fixed;
+  top: 27px;
+  right: 62px;
+  padding: 1px 5px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  margin-right: 28px;
+  font-size: small;
+}
+
+.msgs {
+  position: absolute;
+  right: 0%;
+  top: 46px;
+  margin-right: 6px;
+}
+
+.menu {
+  margin-right: 15px;
+  color: beige;
+  background-color: rgb(2, 2, 60);
+  border: none;
+  font-size: 30px;
+  margin-top: 8px;
+}
+
+.heading {
+  color: beige;
+  justify-self: left;
+}

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoIosPulse } from "react-icons/io";
+import "../Components/style/Login.css";
 import Footer from "./Footer";
 import axios from "axios";
 

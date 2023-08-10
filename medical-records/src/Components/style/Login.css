@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: auto auto auto;
+  background-image: url("C:\Users\sofia\OneDrive\Desktop\medical-records\medical-records\images\stethoscope-with-business-card.jpg");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  min-height: 100vh;
+  margin-left: 0;
+  padding: 0;
+  min-width: 100vw;
+}
+
+.formContainer {
+  justify-self: center;
+  display: grid;
+  justify-content: center;
+  grid-gap: 10px;
+  background-color: rgb(232, 229, 229);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgb(3, 3, 80);
+  margin-top: 130px;
+  width: 300px;
+}
+
+.btn {
+  min-width: fit-content;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  justify-self: center;
+  border: none;
+  background-color: rgb(2, 2, 60);
+  color: beige;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  transform: scale(1.15);
+  box-shadow: 1px 2px #888888;
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.roleSelect {
+  margin-left: 20px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid gray;
+  width: 80px;
+  height: 25px;
+}
+
+.roleContainer {
+  margin-bottom: 10px;
+}
+
+.inputField {
+  border-radius: 4px;
+  margin-left: 10px;
+  height: 25px;
+  border: 1px solid gray;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgb(2, 2, 60);
+  color: beige;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.pulseIcon {
+  font-size: 65px;
+  margin-right: 25px;
+}
+
+.title {
+  font-size: 40px;
+}
+
+.textLink {
+  font-size: small;
+}
+
+.login {
+  color: rgb(2, 2, 60);
+  text-decoration: underline;
+}

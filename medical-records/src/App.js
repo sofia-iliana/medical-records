@@ -7,7 +7,7 @@ import Entry from "./Components/Entry";
 import DoctorProfile from "./Components/DoctorProfile";
 import EntryForDoctor from "./Components/EntryForDoctor";
 import EntriesForDoctor from "./Components/EntriesForDoctor";
-import "./App.css";
+import "../src/Components/style/App.css";
 
 function App() {
   return (
