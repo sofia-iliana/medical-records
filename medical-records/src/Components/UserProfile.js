@@ -77,130 +77,146 @@ function UserProfile() {
     <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
       <div>
-        <h2>Welcome {user.fullName}</h2>
-        <h4>View your medical history</h4>
-        <div className="profileInput">
-          <label htmlFor="searchBy">Search by:</label>
-          <select
-            className="roleSelect"
-            name="searchBy"
-            id="searchBy"
-            onChange={(e) => {
-              setSearch(e.target.value);
+        <div className="headlineInput">
+          <h2 className="welcome">Welcome {user.fullName}</h2>
+          <h4>View your medical history</h4>
+          <div className="profileInput">
+            <label htmlFor="searchBy">Search by:</label>
+            <select
+              className="roleSelect"
+              name="searchBy"
+              id="searchBy"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            >
+              <option value="date">Date</option>
+              <option value="specialty">Specialty</option>
+              <option value="test">Medical Test</option>
+            </select>
+          </div>
+          {(() => {
+            if (search === "date") {
+              return (
+                <div className="profileInput">
+                  <label htmlFor="date">Date:</label>
+                  <DatePicker
+                    className="inputField"
+                    id="date"
+                    selected={date}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={(e) => {
+                      setDate(e);
+                    }}
+                  ></DatePicker>
+                </div>
+              );
+            } else if (search === "specialty") {
+              return (
+                <div className="profileInput">
+                  <label htmlFor="specialty">Specialty:</label>
+                  <input
+                    className="inputField"
+                    id="specialty"
+                    onChange={(e) => {
+                      setSpecialty(e.target.value);
+                    }}
+                  ></input>
+                </div>
+              );
+            } else {
+              return (
+                <div className="profileInput">
+                  <label htmlFor="test">Medical Test:</label>
+                  <input
+                    className="inputField"
+                    id="test"
+                    onChange={(e) => {
+                      setTest(e.target.value);
+                    }}
+                  ></input>
+                </div>
+              );
+            }
+          })()}
+          <button
+            className="searchBtn"
+            onClick={() => {
+              searchEntries();
+              setShow(false);
             }}
           >
-            <option value="date">Date</option>
-            <option value="specialty">Specialty</option>
-            <option value="test">Medical Test</option>
-          </select>
+            Search
+          </button>
         </div>
-        {(() => {
-          if (search === "date") {
-            return (
-              <div className="profileInput">
-                <label htmlFor="date">Date:</label>
-                <DatePicker
-                  className="inputField"
-                  id="date"
-                  selected={date}
-                  dateFormat="dd/MM/yyyy"
-                  onChange={(e) => {
-                    setDate(e);
-                  }}
-                ></DatePicker>
-              </div>
-            );
-          } else if (search === "specialty") {
-            return (
-              <div className="profileInput">
-                <label htmlFor="specialty">Specialty:</label>
-                <input
-                  className="inputField"
-                  id="specialty"
-                  onChange={(e) => {
-                    setSpecialty(e.target.value);
-                  }}
-                ></input>
-              </div>
-            );
-          } else {
-            return (
-              <div className="profileInput">
-                <label htmlFor="test">Medical Test:</label>
-                <input
-                  className="inputField"
-                  id="test"
-                  onChange={(e) => {
-                    setTest(e.target.value);
-                  }}
-                ></input>
-              </div>
-            );
-          }
-        })()}
-        <button
-          className="searchBtn"
-          onClick={() => {
-            searchEntries();
-            setShow(false);
-          }}
-        >
-          Search
-        </button>
 
-        <h4>Results</h4>
-        {entries.length !== 0 ? (
-          show && (
+        <div className="table">
+          {entries.length !== 0 ? (
+            show && (
+              <table>
+                <tr>
+                  <th className="tbl-header">Date</th>
+                  <th className="tbl-header">Specialty</th>
+                  <th className="tbl-header">Medical Test</th>
+                  <th className="tbl-header lastCell"></th>
+                </tr>
+
+                {entries.map((entry) => {
+                  return (
+                    <tr className="tbl-content" key={entry._id}>
+                      <td>{entry.date}</td>
+                      <td>{entry.specialty}</td>
+                      <td>{entry.kindOfTest}</td>
+                      <td>
+                        <button
+                          className="viewBtn"
+                          onClick={() => {
+                            localStorage.setItem("entry", entry._id);
+                            navigate("/entry");
+                          }}
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </table>
+            )
+          ) : (
+            <p>No entries found</p>
+          )}
+          {!show && filteredEntries.length !== 0 && (
             <table>
               <tr>
-                <th>Date</th>
-                <th>Specialty</th>
-                <th>Medical Test</th>
+                <th className="tbl-header">Date</th>
+                <th className="tbl-header">Specialty</th>
+                <th className="tbl-header">Medical Test</th>
+                <th className="tbl-header lastCell"></th>
               </tr>
-              {entries.map((entry) => {
+              {filteredEntries.map((entry) => {
                 return (
-                  <tr
-                    key={entry._id}
-                    onClick={() => {
-                      localStorage.setItem("entry", entry._id);
-                      navigate("/entry");
-                    }}
-                  >
-                    <th>{entry.date}</th>
-                    <th>{entry.specialty}</th>
-                    <th>{entry.kindOfTest}</th>
+                  <tr className="tbl-content" key={entry._id}>
+                    <td>{entry.date}</td>
+                    <td>{entry.specialty}</td>
+                    <td>{entry.kindOfTest}</td>
+                    <td>
+                      <button
+                        className="viewBtn"
+                        onClick={() => {
+                          localStorage.setItem("entry", entry._id);
+                          navigate("/entry");
+                        }}
+                      >
+                        View
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
             </table>
-          )
-        ) : (
-          <p>No entries found</p>
-        )}
-        {!show && filteredEntries.length !== 0 && (
-          <table>
-            <tr>
-              <th>Date</th>
-              <th>Specialty</th>
-              <th>Medical Test</th>
-            </tr>
-            {filteredEntries.map((entry) => {
-              return (
-                <tr
-                  key={entry._id}
-                  onClick={() => {
-                    localStorage.setItem("entry", entry._id);
-                    navigate("/entry");
-                  }}
-                >
-                  <th>{entry.date}</th>
-                  <th>{entry.specialty}</th>
-                  <th>{entry.kindOfTest}</th>
-                </tr>
-              );
-            })}
-          </table>
-        )}
+          )}
+        </div>
       </div>
       <Footer></Footer>
     </div>

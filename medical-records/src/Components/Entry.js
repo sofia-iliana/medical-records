@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
 import PatientNav from "./PatientNav";
+import Footer from "./Footer";
 
 function Entry() {
   const [user, setUser] = useState({});
@@ -90,7 +91,7 @@ function Entry() {
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
       <h1>Medical Records</h1>
       <div>
@@ -186,6 +187,7 @@ function Entry() {
       >
         Delete
       </button>
+      <Footer></Footer>
     </div>
   );
 }

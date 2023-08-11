@@ -5,7 +5,6 @@ body {
 
 li {
   list-style: none;
-  border: 1px solid black;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -50,6 +49,10 @@ li {
   color: beige;
 }
 
+.bell:hover {
+  cursor: pointer;
+}
+
 .notificationBtn {
   background-color: rgb(2, 2, 60);
   border-radius: 50%;
@@ -72,11 +75,17 @@ li {
   font-size: small;
 }
 
+.number:hover {
+  cursor: pointer;
+}
+
 .msgs {
   position: absolute;
   right: 0%;
   top: 46px;
   margin-right: 6px;
+  background-color: beige;
+  border: 1px solid black;
 }
 
 .menu {
@@ -86,6 +95,9 @@ li {
   border: none;
   font-size: 30px;
   margin-top: 8px;
+}
+.menu:hover {
+  cursor: pointer;
 }
 
 .heading {

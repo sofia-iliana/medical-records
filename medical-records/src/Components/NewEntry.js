@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PatientNav from "./PatientNav";
+import Footer from "./Footer";
 
 function NewEntry() {
   const [image, setImage] = useState("");
@@ -73,7 +74,7 @@ function NewEntry() {
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
       <h1>New Medical Entry</h1>
       <div>
@@ -145,6 +146,7 @@ function NewEntry() {
       >
         Save
       </button>
+      <Footer></Footer>
     </div>
   );
 }
