@@ -4,6 +4,7 @@ import axios from "axios";
 import { MdNotifications } from "react-icons/md";
 import "./style/Notification.css";
 import { LuAlignJustify } from "react-icons/lu";
+import { IoIosPulse } from "react-icons/io";
 
 function DoctorNav(props) {
   const [results, setResults] = useState([]);
@@ -23,10 +24,16 @@ function DoctorNav(props) {
 
   function showHide() {
     setShow(!show);
+    if (showMenu) {
+      setShowMenu(false);
+    }
   }
 
   function showHideMenu() {
     setShowMenu(!showMenu);
+    if (show) {
+      setShow(false);
+    }
   }
 
   const signOut = () => {
@@ -36,6 +43,10 @@ function DoctorNav(props) {
 
   return (
     <div className="notificationContainer">
+      <div className="profileTitle">
+        <IoIosPulse className="pulse"></IoIosPulse>
+        <h1>Medical Records</h1>
+      </div>
       <div className="icon">
         <button
           className="notificationBtn"

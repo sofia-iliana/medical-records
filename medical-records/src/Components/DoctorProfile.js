@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DoctorNav from "./DoctorNav";
+import Footer from "./Footer";
 
 function DoctorProfile() {
   const [doctor, setDoctor] = useState("");
@@ -70,51 +71,61 @@ function DoctorProfile() {
   }
 
   return (
-    <div>
+    <div className="mainDoctorProfile">
       <DoctorNav doctorId={doctor._id}></DoctorNav>
 
       <h2>Welcome {doctor.fullName}</h2>
-
-      <h3>Search patient</h3>
-
       <div>
-        <label htmlFor="socialSecNum">Social Security Number:</label>
-        <input
-          id="socialSecNum"
-          placeholder="Social security number"
-          onChange={(e) => {
-            setSocialSecNum(e.target.value);
+        <h3>Search patient</h3>
+
+        <div className="profileInput">
+          <label htmlFor="socialSecNum">Social Security Number:</label>
+          <input
+            className="inputField width90"
+            id="socialSecNum"
+            placeholder="Social security number"
+            onChange={(e) => {
+              setSocialSecNum(e.target.value);
+            }}
+          ></input>
+        </div>
+        <button
+          className="searchBtn"
+          onClick={() => {
+            getPatients();
+            showValues();
           }}
-        ></input>
+        >
+          Search
+        </button>
       </div>
-      <button
-        onClick={() => {
-          getPatients();
-          showValues();
-        }}
-      >
-        Search
-      </button>
+
       {show && (
-        <div>
+        <div className="doctorTable">
           {patients.length !== 0 ? (
             <table>
               <tr>
-                <th>Name</th>
-                <th>Social Security Number</th>
+                <th className="tbl-header">Name</th>
+                <th className="tbl-header">Social Security Number</th>
+                <th className="tbl-header lastCell"></th>
               </tr>
               {patients.map((patient) => {
                 return (
-                  <tr
-                    key={patient._id}
-                    onClick={() => {
-                      setPatientId(patient._id);
-                      setPatientName(patient.fullName);
-                      sendRequest();
-                    }}
-                  >
-                    <th>{patient.fullName}</th>
-                    <th>{patient.socialSecNum}</th>
+                  <tr className="tbl-content" key={patient._id}>
+                    <td>{patient.fullName}</td>
+                    <td>{patient.socialSecNum}</td>
+                    <td>
+                      <button
+                        className="requestBtn"
+                        onClick={() => {
+                          setPatientId(patient._id);
+                          setPatientName(patient.fullName);
+                          sendRequest();
+                        }}
+                      >
+                        Request Access
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
@@ -124,6 +135,7 @@ function DoctorProfile() {
           )}
         </div>
       )}
+      <Footer></Footer>
     </div>
   );
 }

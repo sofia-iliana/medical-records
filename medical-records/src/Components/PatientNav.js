@@ -24,10 +24,16 @@ function PatientNav(props) {
 
   function showHide() {
     setShow(!show);
+    if (showMenu) {
+      setShowMenu(false);
+    }
   }
 
   function showHideMenu() {
     setShowMenu(!showMenu);
+    if (show) {
+      setShow(false);
+    }
   }
 
   const signOut = () => {
@@ -95,7 +101,16 @@ function PatientNav(props) {
         </ul>
       )}
 
-      {results.length !== 0 && <div className="number">{results.length}</div>}
+      {results.length !== 0 && (
+        <div
+          className="number"
+          onClick={() => {
+            showHide();
+          }}
+        >
+          {results.length}
+        </div>
+      )}
       {show && (
         <ul className="msgs">
           {results.map((result) => {

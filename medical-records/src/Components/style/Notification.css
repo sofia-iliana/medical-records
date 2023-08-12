@@ -65,8 +65,8 @@ li {
 .number {
   z-index: 2;
   position: fixed;
-  top: 27px;
-  right: 62px;
+  top: 33px;
+  right: 54px;
   padding: 1px 5px;
   border-radius: 50%;
   background: red;

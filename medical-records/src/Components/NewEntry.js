@@ -76,10 +76,14 @@ function NewEntry() {
   return (
     <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
-      <h1>New Medical Entry</h1>
-      <div>
+      <h1 className="newEntryTitle">New Medical Entry</h1>
+      <h4 className="newEntryText marginLeft">
+        Fill the form to create new entry
+      </h4>
+      <div className="profileInput marginLeft">
         <label for="date">Date:</label>
         <DatePicker
+          className="inputField"
           id="date"
           selected={date}
           dateFormat="dd/MM/yyyy"
@@ -88,9 +92,10 @@ function NewEntry() {
           }}
         ></DatePicker>
       </div>
-      <div>
+      <div className="profileInput marginLeft">
         <label for="specialty">Specialty:</label>
         <input
+          className="inputField"
           id="specialty"
           placeholder="Specialty"
           onChange={(e) => {
@@ -98,9 +103,10 @@ function NewEntry() {
           }}
         ></input>
       </div>
-      <div>
+      <div className="profileInput marginLeft">
         <label for="test">Medical Test:</label>
         <input
+          className="inputField"
           id="test"
           placeholder="Medical test"
           onChange={(e) => {
@@ -108,18 +114,8 @@ function NewEntry() {
           }}
         ></input>
       </div>
-      <div>
-        <label for="report">Medical Report:</label>
-        <textarea
-          id="report"
-          placeholder="Medical report"
-          onChange={(e) => {
-            setReport(e.target.value);
-          }}
-        ></textarea>
-      </div>
-      <div>
-        <label for="upload"> Upload the test results:</label>
+      <div className="profileInput marginLeft">
+        <label for="upload"> Upload test results:</label>
         <input
           type="file"
           accept="image/"
@@ -128,7 +124,20 @@ function NewEntry() {
           }}
         />
       </div>
+      <div className="reportInput marginLeft">
+        <label for="report">Medical Report:</label>
+        <textarea
+          className="medicalReport"
+          id="report"
+          placeholder="Medical report"
+          onChange={(e) => {
+            setReport(e.target.value);
+          }}
+        ></textarea>
+      </div>
+
       <button
+        className="saveBtn"
         onClick={() => {
           submitEntry();
           console.log(
