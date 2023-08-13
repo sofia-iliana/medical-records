@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DisconnectButton from "./DisconnectFromEntries";
 import DoctorNav from "./DoctorNav";
 import axios from "axios";
+import Footer from "./Footer";
 
 function EntriesForDoctor() {
   const [access, setAccess] = useState("");
@@ -94,13 +95,17 @@ function EntriesForDoctor() {
   }
 
   return (
-    <div>
+    <div className="mainDoctorProfile">
       <DoctorNav doctorId={doctor._id}></DoctorNav>
-      <h2>Welcome {doctor.fullName}</h2>
-
-      <div>
+      <div className="flex">
+        <h2 className="welcome marginLeft">Welcome {doctor.fullName}</h2>
+        <DisconnectButton className="exitBtn"></DisconnectButton>
+      </div>
+      <h4 className="marginLeft">Search for patient's entries</h4>
+      <div className="profileInput marginLeft">
         <label htmlFor="searchBy">Search by:</label>
         <select
+          className="roleSelect"
           name="searchBy"
           id="searchBy"
           onChange={(e) => {
@@ -115,9 +120,10 @@ function EntriesForDoctor() {
       {(() => {
         if (search === "date") {
           return (
-            <div>
+            <div className="profileInput marginLeft">
               <label htmlFor="date">Date:</label>
               <DatePicker
+                className="inputField"
                 id="date"
                 selected={date}
                 dateFormat="dd/MM/yyyy"
@@ -129,9 +135,10 @@ function EntriesForDoctor() {
           );
         } else if (search === "specialty") {
           return (
-            <div>
+            <div className="profileInput marginLeft">
               <label htmlFor="specialty">Specialty:</label>
               <input
+                className="inputField"
                 id="specialty"
                 onChange={(e) => {
                   setSpecialty(e.target.value);
@@ -141,9 +148,10 @@ function EntriesForDoctor() {
           );
         } else {
           return (
-            <div>
+            <div className="profileInput marginLeft">
               <label htmlFor="test">Medical Test:</label>
               <input
+                className="inputField"
                 id="test"
                 onChange={(e) => {
                   setTest(e.target.value);
@@ -154,6 +162,7 @@ function EntriesForDoctor() {
         }
       })()}
       <button
+        className="searchBtn"
         onClick={() => {
           searchEntries();
           setShow(false);
@@ -161,61 +170,75 @@ function EntriesForDoctor() {
       >
         Search
       </button>
-
-      <h4>Results for patient {patientName}</h4>
-      {entries.length !== 0 ? (
-        show && (
+      <h4 className="resultsHeadline">Results for patient {patientName}</h4>
+      <div className="doctorTableEntries">
+        {entries.length !== 0 ? (
+          show && (
+            <table>
+              <tr>
+                <th className="tbl-header">Date</th>
+                <th className="tbl-header">Specialty</th>
+                <th className="tbl-header">Medical Test</th>
+                <th className="tbl-header lastCell"></th>
+              </tr>
+              {entries.map((entry) => {
+                return (
+                  <tr key={entry._id} className="tbl-content">
+                    <td>{entry.date}</td>
+                    <td>{entry.specialty}</td>
+                    <td>{entry.kindOfTest}</td>
+                    <td>
+                      <button
+                        className="viewBtn"
+                        onClick={() => {
+                          localStorage.setItem("entry", entry._id);
+                          navigate("/doctorEntry");
+                        }}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          )
+        ) : (
+          <p>No entries found</p>
+        )}
+        {!show && filteredEntries.length !== 0 && (
           <table>
             <tr>
-              <th>Date</th>
-              <th>Specialty</th>
-              <th>Medical Test</th>
+              <th className="tbl-header">Date</th>
+              <th className="tbl-header">Specialty</th>
+              <th className="tbl-header">Medical Test</th>
+              <th className="tbl-header lastCell"></th>
             </tr>
-            {entries.map((entry) => {
+            {filteredEntries.map((entry) => {
               return (
-                <tr
-                  key={entry._id}
-                  onClick={() => {
-                    localStorage.setItem("entry", entry._id);
-                    navigate("/doctorEntry");
-                  }}
-                >
-                  <th>{entry.date}</th>
-                  <th>{entry.specialty}</th>
-                  <th>{entry.kindOfTest}</th>
+                <tr className="tbl-content" key={entry._id}>
+                  <td>{entry.date}</td>
+                  <td>{entry.specialty}</td>
+                  <td>{entry.kindOfTest}</td>
+                  <td>
+                    <button
+                      className="viewBtn"
+                      onClick={() => {
+                        localStorage.setItem("entry", entry._id);
+                        navigate("/doctorEntry");
+                      }}
+                    >
+                      View
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </table>
-        )
-      ) : (
-        <p>No entries found</p>
-      )}
-      {!show && filteredEntries.length !== 0 && (
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>Specialty</th>
-            <th>Medical Test</th>
-          </tr>
-          {filteredEntries.map((entry) => {
-            return (
-              <tr
-                key={entry._id}
-                onClick={() => {
-                  localStorage.setItem("entry", entry._id);
-                  navigate("/entry");
-                }}
-              >
-                <th>{entry.date}</th>
-                <th>{entry.specialty}</th>
-                <th>{entry.kindOfTest}</th>
-              </tr>
-            );
-          })}
-        </table>
-      )}
-      <DisconnectButton></DisconnectButton>
+        )}
+      </div>
+
+      <Footer></Footer>
     </div>
   );
 }

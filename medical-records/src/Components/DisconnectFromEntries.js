@@ -29,6 +29,7 @@ function DisconnectButton() {
   return (
     <div>
       <button
+        className="exitBtn"
         onClick={() => {
           disconnect();
         }}

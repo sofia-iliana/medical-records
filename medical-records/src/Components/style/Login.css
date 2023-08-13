@@ -4,6 +4,10 @@ body {
   width: 100%;
 }
 
+p {
+  text-align: center;
+}
+
 .container {
   display: grid;
   align-items: center;
@@ -23,7 +27,7 @@ body {
   display: grid;
   justify-content: center;
   grid-gap: 10px;
-  background-color: rgb(232, 229, 229);
+  background-color: rgb(245, 243, 243);
   border-radius: 10px;
   padding: 20px;
   border: 1px solid rgb(3, 3, 80);

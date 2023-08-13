@@ -13,8 +13,7 @@ a:hover {
   cursor: pointer;
 }
 
-h1,
-p {
+h1 {
   text-align: center;
 }
 
@@ -67,6 +66,7 @@ p {
   width: 100vw;
   font-size: small;
   background-color: beige;
+  text-align: center;
 }
 
 /*user profile*/
@@ -246,4 +246,131 @@ table {
   margin-bottom: 60px;
   display: flex;
   justify-content: center;
+}
+
+/*entries for doctor*/
+.resultsHeadline {
+  text-align: center;
+}
+
+.doctorTableEntries {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exitBtn {
+  margin-right: 20px;
+  margin-top: 30px;
+  font-size: x-large;
+  background: none;
+  border: none;
+  color: rgb(2, 2, 60);
+}
+
+.exitBtn:hover {
+  cursor: pointer;
+  color: beige;
+}
+
+/*entry for doctor*/
+.entryDetails {
+  display: grid;
+  justify-content: left;
+  text-align: left;
+  margin-top: 30px;
+}
+
+.editEntry {
+  display: flex;
+}
+
+.editBtn {
+  margin-left: 20px;
+  margin-top: 17px;
+  font-size: large;
+  background: none;
+  border: none;
+  color: rgb(2, 2, 60);
+  align-self: baseline;
+}
+
+.editBtn:hover {
+  cursor: pointer;
+  color: beige;
+}
+
+.marginTop {
+  margin-top: 10px;
+}
+
+.doctorTextarea {
+  border-radius: 5px;
+  width: 450px;
+  height: 200px;
+}
+
+.image {
+  cursor: pointer;
+  width: 50%;
+  height: auto;
+}
+
+.wholeEntry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entryHeadline {
+  display: grid;
+  grid-template-columns: auto auto;
+  text-align: end;
+}
+
+.entryExitBtn {
+  justify-self: end;
+}
+
+.entryTitle {
+  text-align: end;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 30px;
+}
+
+.marginRight {
+  margin-right: 100px;
+}
+
+/*modal*/
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 50%;
+  position: fixed;
+  bottom: 300px;
+  left: 430px;
+  background-color: beige;
+}
+
+.closeBtn {
+  align-self: end;
+  width: fit-content;
+  font-size: large;
+  background: none;
+  border: none;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
 }

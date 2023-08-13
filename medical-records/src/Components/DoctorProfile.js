@@ -74,9 +74,9 @@ function DoctorProfile() {
     <div className="mainDoctorProfile">
       <DoctorNav doctorId={doctor._id}></DoctorNav>
 
-      <h2>Welcome {doctor.fullName}</h2>
-      <div>
-        <h3>Search patient</h3>
+      <div className="marginLeft">
+        <h2 className="welcome">Welcome {doctor.fullName}</h2>
+        <h3>Search patient to view medical history</h3>
 
         <div className="profileInput">
           <label htmlFor="socialSecNum">Social Security Number:</label>
@@ -131,7 +131,7 @@ function DoctorProfile() {
               })}
             </table>
           ) : (
-            <p>No patients found</p>
+            <p style={{ fontSize: "20px" }}>No patients found</p>
           )}
         </div>
       )}
