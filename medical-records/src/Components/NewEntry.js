@@ -80,60 +80,65 @@ function NewEntry() {
       <h4 className="newEntryText marginLeft">
         Fill the form to create new entry
       </h4>
-      <div className="profileInput marginLeft">
-        <label for="date">Date:</label>
-        <DatePicker
-          className="inputField"
-          id="date"
-          selected={date}
-          dateFormat="dd/MM/yyyy"
-          onChange={(e) => {
-            setDate(e);
-          }}
-        ></DatePicker>
-      </div>
-      <div className="profileInput marginLeft">
-        <label for="specialty">Specialty:</label>
-        <input
-          className="inputField"
-          id="specialty"
-          placeholder="Specialty"
-          onChange={(e) => {
-            setSpecialty(e.target.value);
-          }}
-        ></input>
-      </div>
-      <div className="profileInput marginLeft">
-        <label for="test">Medical Test:</label>
-        <input
-          className="inputField"
-          id="test"
-          placeholder="Medical test"
-          onChange={(e) => {
-            setTest(e.target.value);
-          }}
-        ></input>
-      </div>
-      <div className="profileInput marginLeft">
-        <label for="upload"> Upload test results:</label>
-        <input
-          type="file"
-          accept="image/"
-          onChange={(e) => {
-            handleUploadImage(e);
-          }}
-        />
-      </div>
-      <div className="reportInput marginLeft">
-        <label for="report">Medical Report:</label>
-        <textarea
-          className="medicalReport"
-          id="report"
-          placeholder="Medical report"
-          onChange={(e) => {
-            setReport(e.target.value);
-          }}
-        ></textarea>
+      <div className="newContainer">
+        <div className="fitContent">
+          <div className="profileInput marginLeft">
+            <label for="date">Date:</label>
+            <DatePicker
+              className="inputField"
+              id="date"
+              selected={date}
+              dateFormat="dd/MM/yyyy"
+              onChange={(e) => {
+                setDate(e);
+              }}
+            ></DatePicker>
+          </div>
+          <div className="profileInput marginLeft">
+            <label for="specialty">Specialty:</label>
+            <input
+              className="inputField"
+              id="specialty"
+              placeholder="Specialty"
+              onChange={(e) => {
+                setSpecialty(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div className="profileInput marginLeft">
+            <label for="test">Medical Test:</label>
+            <input
+              className="inputField"
+              id="test"
+              placeholder="Medical test"
+              onChange={(e) => {
+                setTest(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div className="profileInput marginLeft">
+            <label for="upload"> Upload test results:</label>
+            <input
+              type="file"
+              accept="image/"
+              onChange={(e) => {
+                handleUploadImage(e);
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="reportInput marginLeft">
+          <label for="report">Medical Report:</label>
+          <textarea
+            className="medicalReport"
+            id="report"
+            placeholder="Medical report"
+            onChange={(e) => {
+              setReport(e.target.value);
+            }}
+          ></textarea>
+        </div>
       </div>
 
       <button

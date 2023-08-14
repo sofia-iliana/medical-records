@@ -93,26 +93,20 @@ function Entry() {
   return (
     <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
-      <h1>Medical Records</h1>
-      <div>
-        <p>Full Name: {user.fullName}</p>
-        <p></p>
-      </div>
-      <div>
-        <p>Social Security Number: {user.socialSecNum}</p>
-        <p></p>
-      </div>
-      <div>
-        <p>Date Of Birth: {user.dateOfBirth}</p>
-        <p></p>
-      </div>
-      <div>
-        <p>Date: {entry.date}</p>
-        <p></p>
-      </div>
-      <div>
+      <h1>Medical Entry</h1>
+
+      <p>Full Name: {user.fullName}</p>
+
+      <p>Social Security Number: {user.socialSecNum}</p>
+
+      <p>Date Of Birth: {user.dateOfBirth}</p>
+
+      <p>Date: {entry.date}</p>
+
+      <div className="editEntry">
         <p>Specialty: {entry.specialty}</p>
         <button
+          className="editBtn"
           onClick={() => {
             showSpecialty();
           }}
@@ -127,9 +121,10 @@ function Entry() {
           ></input>
         )}
       </div>
-      <div>
+      <div className="editEntry">
         <p>Medical Test: {entry.kindOfTest}</p>
         <button
+          className="editBtn"
           onClick={() => {
             showTest();
           }}
@@ -144,9 +139,10 @@ function Entry() {
           ></input>
         )}
       </div>
-      <div>
+      <div className="editEntry">
         <p>Medical Report: {entry.medicalReport}</p>
         <button
+          className="editBtn"
           onClick={() => {
             showReport();
           }}

@@ -181,11 +181,20 @@ table {
 }
 
 .medicalReport {
-  width: 60%;
+  width: 100%;
   height: 150px;
   border-radius: 4px;
   margin-left: 10px;
   border: 1px solid gray;
+}
+
+.newContainer {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.fitContent {
+  width: fit-content;
 }
 
 .reportInput {
