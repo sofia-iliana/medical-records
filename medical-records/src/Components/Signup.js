@@ -75,7 +75,7 @@ function Signup() {
         <IoIosPulse className="pulseIcon"></IoIosPulse>
         <h1 className="title">Medical Records</h1>
       </div>
-      <div className="formContainer">
+      <div className="formContainerSignup">
         <h1 className="login">Sign up</h1>
         <div className="roleContainer">
           <label htmlFor="role">Sign up as:</label>

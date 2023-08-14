@@ -66,8 +66,9 @@ function DoctorNav(props) {
         </button>
       </div>
       {showMenu && (
-        <ul className="msgs">
+        <ul className="msgs dropdownMenu">
           <li
+            className="menuLink gray"
             onClick={() => {
               navigate("/doctorProfile");
             }}
@@ -75,6 +76,7 @@ function DoctorNav(props) {
             Profile
           </li>
           <li
+            className="gray"
             onClick={() => {
               signOut();
             }}
@@ -90,9 +92,10 @@ function DoctorNav(props) {
         <ul className="msgs">
           {results.map((result) => {
             return (
-              <li key={result._id}>
+              <li className="messageBox" key={result._id}>
                 Patient {result.userName} gave you access to medical records
                 <button
+                  className="viewBtn"
                   onClick={() => {
                     setRequestId(result._id);
                     localStorage.setItem("accessRequest", result._id);

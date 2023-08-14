@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdOutlineEdit } from "react-icons/md";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import PatientNav from "./PatientNav";
 import Footer from "./Footer";
 
@@ -14,6 +15,7 @@ function Entry() {
   const [specialty, setSpecialty] = useState(entry.specialty);
   const [test, setTest] = useState(entry.kindOfTest);
   const [report, setReport] = useState(entry.medicalReport);
+  const [showImage, setShowImage] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,6 +75,10 @@ function Entry() {
     setReportEdit(!reportEdit);
   }
 
+  function showHideImage() {
+    setShowImage(!showImage);
+  }
+
   function updateEntry() {
     const shouldUpdate = window.confirm(
       "Are you sure you want to save the changes?"
@@ -94,95 +100,164 @@ function Entry() {
     <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
       <h1>Medical Entry</h1>
+      <div className="wholeEntry">
+        <div className="entryDetails marginLeft">
+          <p className="alignLeft">
+            <span className="bold">Full Name:</span> {user.fullName}
+          </p>
+          <p className="alignLeft">
+            <span className="bold">Social Security Number:</span>
+            {user.socialSecNum}
+          </p>
+          <p className="alignLeft">
+            {" "}
+            <span className="bold">Date Of Birth:</span> {user.dateOfBirth}
+          </p>
+          <p className="alignLeft">
+            {" "}
+            <span className="bold">Date:</span> {entry.date}
+          </p>
+          <div className="editEntry">
+            <p>
+              {" "}
+              <span className="bold">Specialty:</span> {entry.specialty}
+            </p>
+            <button
+              className="editBtn"
+              onClick={() => {
+                showSpecialty();
+              }}
+            >
+              <MdOutlineEdit></MdOutlineEdit>
+            </button>
+            {specialtyEdit && (
+              <input
+                className="inputField marginTop"
+                onChange={(e) => {
+                  setSpecialty(e.currentTarget.value);
+                }}
+              ></input>
+            )}
+          </div>
+          <div className="editEntry">
+            <p>
+              {" "}
+              <span className="bold">Medical Test:</span> {entry.kindOfTest}
+            </p>
+            <button
+              className="editBtn"
+              onClick={() => {
+                showTest();
+              }}
+            >
+              <MdOutlineEdit></MdOutlineEdit>
+            </button>
+            {testEdit && (
+              <input
+                className="inputField marginTop"
+                onChange={(e) => {
+                  setTest(e.target.value);
+                }}
+              ></input>
+            )}
+          </div>
+          <div className="editEntry">
+            <p>
+              {" "}
+              <span className="bold">Medical Report:</span>{" "}
+              {entry.medicalReport}
+            </p>
+            <button
+              className="editBtn"
+              onClick={() => {
+                showReport();
+              }}
+            >
+              <MdOutlineEdit></MdOutlineEdit>
+            </button>
+            {reportEdit && (
+              <textarea
+                className="doctorTextarea marginTop"
+                onChange={(e) => {
+                  setReport(e.currentTarget.value);
+                }}
+              ></textarea>
+            )}
+          </div>
+        </div>
 
-      <p>Full Name: {user.fullName}</p>
+        <div>
+          <p
+            className="bold"
+            style={{
+              textAlign: "center",
+              marginRight: "600px",
+              marginTop: "100px",
+            }}
+          >
+            Image:{" "}
+          </p>
+          {entry.img ? (
+            <>
+              <img
+                className="image"
+                onClick={() => {
+                  showHideImage();
+                }}
+                src={entry.img.url}
+              ></img>
+              {
+                //image popup
+                showImage && (
+                  <div className="modal">
+                    <button
+                      className="closeBtn"
+                      onClick={() => {
+                        showHideImage();
+                      }}
+                    >
+                      <AiOutlineCloseCircle></AiOutlineCloseCircle>
+                    </button>
+                    <img src={entry.img.url}></img>
+                  </div>
+                )
+              }
+            </>
+          ) : (
+            <p
+              style={{
+                textAlign: "center",
+                marginRight: "600px",
+                marginTop: "100px",
+                fontSize: "20px",
+              }}
+            >
+              No image found
+            </p>
+          )}
+        </div>
+      </div>
 
-      <p>Social Security Number: {user.socialSecNum}</p>
-
-      <p>Date Of Birth: {user.dateOfBirth}</p>
-
-      <p>Date: {entry.date}</p>
-
-      <div className="editEntry">
-        <p>Specialty: {entry.specialty}</p>
+      <div className="btnContainer marginBottom">
         <button
-          className="editBtn"
+          className="searchBtn"
+          style={{ width: "120px" }}
           onClick={() => {
-            showSpecialty();
+            updateEntry();
           }}
         >
-          <MdOutlineEdit></MdOutlineEdit>
+          Save changes
         </button>
-        {specialtyEdit && (
-          <input
-            onChange={(e) => {
-              setSpecialty(e.currentTarget.value);
-            }}
-          ></input>
-        )}
-      </div>
-      <div className="editEntry">
-        <p>Medical Test: {entry.kindOfTest}</p>
         <button
-          className="editBtn"
+          className="searchBtn marginRight"
           onClick={() => {
-            showTest();
+            deleteEntry();
           }}
         >
-          <MdOutlineEdit></MdOutlineEdit>
+          Delete
         </button>
-        {testEdit && (
-          <input
-            onChange={(e) => {
-              setTest(e.target.value);
-            }}
-          ></input>
-        )}
       </div>
-      <div className="editEntry">
-        <p>Medical Report: {entry.medicalReport}</p>
-        <button
-          className="editBtn"
-          onClick={() => {
-            showReport();
-          }}
-        >
-          <MdOutlineEdit></MdOutlineEdit>
-        </button>
-        {reportEdit && (
-          <textarea
-            onChange={(e) => {
-              setReport(e.currentTarget.value);
-            }}
-          ></textarea>
-        )}
-      </div>
-      <div>
-        <p>Image: </p>
-        {entry.img ? (
-          <>
-            <img src={entry.img.url}></img>
-          </>
-        ) : (
-          <p>No image found</p>
-        )}
 
-        <p></p>
-      </div>
-      <button
-        onClick={() => {
-          updateEntry();
-        }}
-      >
-        Save changes
-      </button>
-      <button
-        onClick={() => {
-          deleteEntry();
-        }}
-      >
-        Delete
-      </button>
       <Footer></Footer>
     </div>
   );

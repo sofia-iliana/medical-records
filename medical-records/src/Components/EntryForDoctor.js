@@ -91,11 +91,21 @@ function EntryForDoctor() {
 
       <div className="wholeEntry">
         <div className="entryDetails marginLeft">
-          <p>Full Name: {entry.fullName}</p>
-          <p>Social Security Number: {entry.socialSecNum}</p>
-          <p>Date: {entry.date}</p>
+          <p>
+            <span className="bold">Full Name:</span> {entry.fullName}
+          </p>
+          <p>
+            <span className="bold">Social Security Number:</span>{" "}
+            {entry.socialSecNum}
+          </p>
+          <p>
+            <span className="bold">Date: </span>
+            {entry.date}
+          </p>
           <div className="editEntry">
-            <p>Specialty: {entry.specialty}</p>
+            <p>
+              <span className="bold">Specialty:</span> {entry.specialty}
+            </p>
             <button
               className="editBtn"
               onClick={() => {
@@ -114,7 +124,9 @@ function EntryForDoctor() {
             )}
           </div>
           <div className="editEntry">
-            <p>Medical Test: {entry.kindOfTest}</p>
+            <p>
+              <span className="bold">Medical Test:</span> {entry.kindOfTest}
+            </p>
             <button
               className="editBtn"
               onClick={() => {
@@ -133,7 +145,10 @@ function EntryForDoctor() {
             )}
           </div>
           <div className="editEntry">
-            <p>Medical Report: {entry.medicalReport}</p>
+            <p>
+              <span className="bold">Medical Report:</span>{" "}
+              {entry.medicalReport}
+            </p>
             <button
               className="editBtn"
               onClick={() => {
@@ -155,6 +170,7 @@ function EntryForDoctor() {
 
         <div>
           <p
+            className="bold"
             style={{
               textAlign: "center",
               marginRight: "600px",

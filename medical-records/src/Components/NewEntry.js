@@ -82,8 +82,10 @@ function NewEntry() {
       </h4>
       <div className="newContainer">
         <div className="fitContent">
-          <div className="profileInput marginLeft">
-            <label for="date">Date:</label>
+          <div className="profileInputNew marginLeft">
+            <label for="date" className="bold">
+              Date:
+            </label>
             <DatePicker
               className="inputField"
               id="date"
@@ -94,8 +96,10 @@ function NewEntry() {
               }}
             ></DatePicker>
           </div>
-          <div className="profileInput marginLeft">
-            <label for="specialty">Specialty:</label>
+          <div className="profileInputNew marginLeft">
+            <label for="specialty" className="bold">
+              Specialty:
+            </label>
             <input
               className="inputField"
               id="specialty"
@@ -105,8 +109,10 @@ function NewEntry() {
               }}
             ></input>
           </div>
-          <div className="profileInput marginLeft">
-            <label for="test">Medical Test:</label>
+          <div className="profileInputNew marginLeft">
+            <label for="test" className="bold">
+              Medical Test:
+            </label>
             <input
               className="inputField"
               id="test"
@@ -116,8 +122,11 @@ function NewEntry() {
               }}
             ></input>
           </div>
-          <div className="profileInput marginLeft">
-            <label for="upload"> Upload test results:</label>
+          <div className="marginLeft">
+            <label for="upload" className="bold">
+              {" "}
+              Upload test results:
+            </label>
             <input
               type="file"
               accept="image/"
@@ -128,8 +137,10 @@ function NewEntry() {
           </div>
         </div>
 
-        <div className="reportInput marginLeft">
-          <label for="report">Medical Report:</label>
+        <div className="reportInputNew">
+          <label for="report" className="bold">
+            Medical Report:
+          </label>
           <textarea
             className="medicalReport"
             id="report"

@@ -5,6 +5,7 @@ import { MdNotifications } from "react-icons/md";
 import "./style/Notification.css";
 import { LuAlignJustify } from "react-icons/lu";
 import { IoIosPulse } from "react-icons/io";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 function PatientNav(props) {
   const [results, setResults] = useState([]);
@@ -76,8 +77,9 @@ function PatientNav(props) {
         </button>
       </div>
       {showMenu && (
-        <ul className="msgs">
+        <ul className="msgs dropdownMenu">
           <li
+            className="menuLink gray"
             onClick={() => {
               navigate("/profile");
             }}
@@ -85,6 +87,7 @@ function PatientNav(props) {
             Profile
           </li>
           <li
+            className="menuLink gray"
             onClick={() => {
               navigate("/newEntry");
             }}
@@ -92,6 +95,7 @@ function PatientNav(props) {
             Create New Entry
           </li>
           <li
+            className="gray"
             onClick={() => {
               signOut();
             }}
@@ -115,17 +119,22 @@ function PatientNav(props) {
         <ul className="msgs">
           {results.map((result) => {
             return (
-              <li key={result._id}>
+              <li className="messageBox" key={result._id}>
                 Doctor {result.doctorName} requests access to your medical
                 records
-                <button
-                  onClick={() => {
-                    setRequestId(result._id);
-                    giveAccess();
-                  }}
-                >
-                  accept
-                </button>
+                {!result.allow ? (
+                  <button
+                    className="acceptBtn"
+                    onClick={() => {
+                      setRequestId(result._id);
+                      giveAccess();
+                    }}
+                  >
+                    Accept
+                  </button>
+                ) : (
+                  <AiOutlineCheckCircle className="check"></AiOutlineCheckCircle>
+                )}
               </li>
             );
           })}

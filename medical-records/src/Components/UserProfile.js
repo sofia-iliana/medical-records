@@ -81,7 +81,9 @@ function UserProfile() {
           <h2 className="welcome">Welcome {user.fullName}</h2>
           <h4>View your medical history</h4>
           <div className="profileInput">
-            <label htmlFor="searchBy">Search by:</label>
+            <label htmlFor="searchBy" className="bold">
+              Search by:
+            </label>
             <select
               className="roleSelect"
               name="searchBy"
@@ -99,7 +101,9 @@ function UserProfile() {
             if (search === "date") {
               return (
                 <div className="profileInput">
-                  <label htmlFor="date">Date:</label>
+                  <label htmlFor="date" className="bold">
+                    Date:
+                  </label>
                   <DatePicker
                     className="inputField"
                     id="date"
