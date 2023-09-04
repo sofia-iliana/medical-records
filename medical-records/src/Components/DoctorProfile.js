@@ -76,28 +76,32 @@ function DoctorProfile() {
 
       <div className="marginLeft">
         <h2 className="welcome">Welcome {doctor.fullName}</h2>
-        <h3>Search patient to view medical history</h3>
-
-        <div className="profileInput">
-          <label htmlFor="socialSecNum">Social Security Number:</label>
-          <input
-            className="inputField width90"
-            id="socialSecNum"
-            placeholder="Social security number"
-            onChange={(e) => {
-              setSocialSecNum(e.target.value);
+        <h3>
+          View your patient's medical history, using their social security
+          number.{" "}
+        </h3>
+        <div className="securitySearch">
+          <div className="searchInput">
+            <label htmlFor="socialSecNum">Social Security Number:</label>
+            <input
+              className="inputField width140"
+              id="socialSecNum"
+              placeholder="Social security number"
+              onChange={(e) => {
+                setSocialSecNum(e.target.value);
+              }}
+            ></input>
+          </div>
+          <button
+            className="searchBtn"
+            onClick={() => {
+              getPatients();
+              showValues();
             }}
-          ></input>
+          >
+            Search
+          </button>
         </div>
-        <button
-          className="searchBtn"
-          onClick={() => {
-            getPatients();
-            showValues();
-          }}
-        >
-          Search
-        </button>
       </div>
 
       {show && (

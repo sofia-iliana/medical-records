@@ -153,3 +153,11 @@ li {
   color: rgb(147, 146, 146);
   cursor: pointer;
 }
+
+.pageTitle {
+  font-family: "Adobe Clean", sans-serif;
+  font-family: "Adobe Clean Serif", sans-serif;
+  font-family: "Adobe Clean UX", sans-serif;
+  font-size: xx-large;
+  margin-left: 5px;
+}

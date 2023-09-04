@@ -10,6 +10,10 @@ const Access = mongoose.model("access", {
     type: Boolean,
     default: false,
   },
+  /* new: {
+    type: Boolean,
+    default: true,
+  },*/
 });
 
 module.exports = Access;

@@ -57,7 +57,6 @@ function Entry() {
           "http://localhost:1212/entry/delete/" + localStorage.getItem("entry")
         )
         .then(({ data }) => {
-          alert(data.msg);
           navigate("/profile");
         });
     }

@@ -14,27 +14,12 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [specialty, setSpecialty] = useState("");
   const navigate = useNavigate();
-  const [userSignup, setUserSignup] = useState({
-    fullName,
-    email,
-    password,
-    phone,
-    socialSecNum,
-    dateOfBirth,
-    role,
-  });
-  const [doctorSignup, setDoctorSignup] = useState({
-    fullName,
-    email,
-    password,
-    specialty,
-    role,
-  });
 
   function toLogin() {
     navigate("/");
   }
 
+  //make a post request to sing up a user
   function sendPost(url, path, signupObj) {
     axios
       .post(url, signupObj)
@@ -56,17 +41,34 @@ function Signup() {
   function signup() {
     if (email && password && fullName) {
       if (role === "patient") {
-        sendPost("http://localhost:1212/user/signup", "/profile", userSignup);
+        sendPost("http://localhost:1212/user/signup", "/profile", {
+          fullName,
+          email,
+          password,
+          phone,
+          socialSecNum,
+          dateOfBirth,
+          role,
+        });
       } else {
-        sendPost(
-          "http://localhost:1212/doctor/signup",
-          "/doctorProfile",
-          doctorSignup
-        );
+        sendPost("http://localhost:1212/doctor/signup", "/doctorProfile", {
+          fullName,
+          email,
+          password,
+          specialty,
+          role,
+        });
       }
     } else {
       alert("Please, fill the form");
     }
+    console.log({
+      fullName,
+      email,
+      password,
+      specialty,
+      role,
+    });
   }
 
   return (

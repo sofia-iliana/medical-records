@@ -20,6 +20,9 @@ p {
   margin-left: 0;
   padding: 0;
   min-width: 100vw;
+  font-family: "Adobe Clean", sans-serif;
+  font-family: "Adobe Clean Serif", sans-serif;
+  font-family: "Adobe Clean UX", sans-serif;
 }
 
 .formContainer {
@@ -62,7 +65,6 @@ p {
 
 .btn:hover {
   transform: scale(1.15);
-  box-shadow: 1px 2px #888888;
 }
 
 .inputs {
@@ -115,6 +117,9 @@ p {
 
 .title {
   font-size: 40px;
+  font-family: "Adobe Clean", sans-serif;
+  font-family: "Adobe Clean Serif", sans-serif;
+  font-family: "Adobe Clean UX", sans-serif;
 }
 
 .textLink {
@@ -124,4 +129,7 @@ p {
 .login {
   color: rgb(2, 2, 60);
   text-decoration: underline;
+  font-family: "Adobe Clean", sans-serif;
+  font-family: "Adobe Clean Serif", sans-serif;
+  font-family: "Adobe Clean UX", sans-serif;
 }

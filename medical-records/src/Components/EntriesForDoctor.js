@@ -101,75 +101,86 @@ function EntriesForDoctor() {
         <h2 className="welcome marginLeft">Welcome {doctor.fullName}</h2>
         <DisconnectButton className="exitBtn"></DisconnectButton>
       </div>
-      <h4 className="marginLeft">Search for patient's entries</h4>
-      <div className="profileInput marginLeft">
-        <label htmlFor="searchBy">Search by:</label>
-        <select
-          className="roleSelect"
-          name="searchBy"
-          id="searchBy"
-          onChange={(e) => {
-            setSearch(e.target.value);
+      <h4 className="marginLeft">View patient's entries</h4>
+      <div className="patientSearch">
+        <div className="profileInput marginLeft">
+          <label htmlFor="searchBy" className="bold">
+            Search by:
+          </label>
+          <select
+            className="roleSelect"
+            name="searchBy"
+            id="searchBy"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          >
+            <option value="date">Date</option>
+            <option value="specialty">Specialty</option>
+            <option value="test">Medical Test</option>
+          </select>
+        </div>
+        {(() => {
+          if (search === "date") {
+            return (
+              <div className="profileInput marginLeft">
+                <label htmlFor="date" className="bold">
+                  Date:
+                </label>
+                <DatePicker
+                  className="inputField"
+                  id="date"
+                  selected={date}
+                  dateFormat="dd/MM/yyyy"
+                  onChange={(e) => {
+                    setDate(e);
+                  }}
+                ></DatePicker>
+              </div>
+            );
+          } else if (search === "specialty") {
+            return (
+              <div className="profileInput marginLeft">
+                <label htmlFor="specialty" className="bold">
+                  Specialty:
+                </label>
+                <input
+                  className="inputField"
+                  id="specialty"
+                  onChange={(e) => {
+                    setSpecialty(e.target.value);
+                  }}
+                ></input>
+              </div>
+            );
+          } else {
+            return (
+              <div className="profileInput marginLeft">
+                <label htmlFor="test" className="bold">
+                  Medical Test:
+                </label>
+                <input
+                  className="inputField"
+                  id="test"
+                  onChange={(e) => {
+                    setTest(e.target.value);
+                  }}
+                ></input>
+              </div>
+            );
+          }
+        })()}
+        <button
+          className="searchBtn"
+          onClick={() => {
+            searchEntries();
+            setShow(false);
           }}
         >
-          <option value="date">Date</option>
-          <option value="specialty">Specialty</option>
-          <option value="test">Medical Test</option>
-        </select>
+          Search
+        </button>
       </div>
-      {(() => {
-        if (search === "date") {
-          return (
-            <div className="profileInput marginLeft">
-              <label htmlFor="date">Date:</label>
-              <DatePicker
-                className="inputField"
-                id="date"
-                selected={date}
-                dateFormat="dd/MM/yyyy"
-                onChange={(e) => {
-                  setDate(e);
-                }}
-              ></DatePicker>
-            </div>
-          );
-        } else if (search === "specialty") {
-          return (
-            <div className="profileInput marginLeft">
-              <label htmlFor="specialty">Specialty:</label>
-              <input
-                className="inputField"
-                id="specialty"
-                onChange={(e) => {
-                  setSpecialty(e.target.value);
-                }}
-              ></input>
-            </div>
-          );
-        } else {
-          return (
-            <div className="profileInput marginLeft">
-              <label htmlFor="test">Medical Test:</label>
-              <input
-                className="inputField"
-                id="test"
-                onChange={(e) => {
-                  setTest(e.target.value);
-                }}
-              ></input>
-            </div>
-          );
-        }
-      })()}
-      <button
-        className="searchBtn"
-        onClick={() => {
-          searchEntries();
-          setShow(false);
-        }}
-      >
-        Search
-      </button>
+
       <h4 className="resultsHeadline">Results for patient {patientName}</h4>
       <div className="doctorTableEntries">
         {entries.length !== 0 ? (

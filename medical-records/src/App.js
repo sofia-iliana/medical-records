@@ -12,6 +12,8 @@ import "../src/Components/style/App.css";
 function App() {
   return (
     <div>
+      <style>@import url('https://fonts.cdnfonts.com/css/adobe-clean');</style>
+
       <Router>
         <div>
           <Routes>

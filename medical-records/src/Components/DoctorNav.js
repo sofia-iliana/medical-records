@@ -45,7 +45,7 @@ function DoctorNav(props) {
     <div className="notificationContainer">
       <div className="profileTitle">
         <IoIosPulse className="pulse"></IoIosPulse>
-        <h1>Medical Records</h1>
+        <h1 className="pageTitle">Medical Records</h1>
       </div>
       <div className="icon">
         <button
@@ -91,21 +91,23 @@ function DoctorNav(props) {
       {show && (
         <ul className="msgs">
           {results.map((result) => {
-            return (
-              <li className="messageBox" key={result._id}>
-                Patient {result.userName} gave you access to medical records
-                <button
-                  className="viewBtn"
-                  onClick={() => {
-                    setRequestId(result._id);
-                    localStorage.setItem("accessRequest", result._id);
-                    navigate("/doctorEntries");
-                  }}
-                >
-                  View
-                </button>
-              </li>
-            );
+            if (result.allow) {
+              return (
+                <li className="messageBox" key={result._id}>
+                  Patient {result.userName} gave you access to medical records
+                  <button
+                    className="viewBtn"
+                    onClick={() => {
+                      setRequestId(result._id);
+                      localStorage.setItem("accessRequest", result._id);
+                      navigate("/doctorEntries");
+                    }}
+                  >
+                    View
+                  </button>
+                </li>
+              );
+            }
           })}
         </ul>
       )}

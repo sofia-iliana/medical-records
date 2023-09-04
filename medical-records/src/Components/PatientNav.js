@@ -43,19 +43,23 @@ function PatientNav(props) {
   };
 
   function giveAccess() {
-    axios
-      .put("http://localhost:1212/request/access/" + requestId, { allow: true })
-      .then(({ data }) => {
-        alert(data.msg);
-      });
-    console.log(requestId);
+    if (requestId) {
+      axios
+        .put("http://localhost:1212/request/access/" + requestId, {
+          allow: true,
+        })
+        .then(({ data }) => {
+          alert(data.msg);
+        });
+      console.log(requestId);
+    }
   }
 
   return (
     <div className="notificationContainer">
       <div className="profileTitle">
         <IoIosPulse className="pulse"></IoIosPulse>
-        <h1>Medical Records</h1>
+        <h1 className="pageTitle">Medical Records</h1>
       </div>
 
       <div className="icon">

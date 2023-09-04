@@ -76,101 +76,104 @@ function NewEntry() {
   return (
     <div className="mainContainer">
       <PatientNav userId={user._id}></PatientNav>
-      <h1 className="newEntryTitle">New Medical Entry</h1>
-      <h4 className="newEntryText marginLeft">
-        Fill the form to create new entry
-      </h4>
-      <div className="newContainer">
-        <div className="fitContent">
-          <div className="profileInputNew marginLeft">
-            <label for="date" className="bold">
-              Date:
-            </label>
-            <DatePicker
-              className="inputField"
-              id="date"
-              selected={date}
-              dateFormat="dd/MM/yyyy"
-              onChange={(e) => {
-                setDate(e);
-              }}
-            ></DatePicker>
-          </div>
-          <div className="profileInputNew marginLeft">
-            <label for="specialty" className="bold">
-              Specialty:
-            </label>
-            <input
-              className="inputField"
-              id="specialty"
-              placeholder="Specialty"
-              onChange={(e) => {
-                setSpecialty(e.target.value);
-              }}
-            ></input>
-          </div>
-          <div className="profileInputNew marginLeft">
-            <label for="test" className="bold">
-              Medical Test:
-            </label>
-            <input
-              className="inputField"
-              id="test"
-              placeholder="Medical test"
-              onChange={(e) => {
-                setTest(e.target.value);
-              }}
-            ></input>
-          </div>
-          <div className="marginLeft">
-            <label for="upload" className="bold">
-              {" "}
-              Upload test results:
-            </label>
-            <input
-              type="file"
-              accept="image/"
-              onChange={(e) => {
-                handleUploadImage(e);
-              }}
-            />
-          </div>
-        </div>
 
-        <div className="reportInputNew">
-          <label for="report" className="bold">
-            Medical Report:
-          </label>
-          <textarea
-            className="medicalReport"
-            id="report"
-            placeholder="Medical report"
-            onChange={(e) => {
-              setReport(e.target.value);
-            }}
-          ></textarea>
+      <div>
+        <h1 className="newEntryTitle">New Medical Entry</h1>
+        <h4 className="newEntryText marginLeft">
+          Fill the form to store your medical records.
+        </h4>
+        <div className="newContainer">
+          <div className="fitContent">
+            <div className="profileInputNew marginLeft">
+              <label for="date" className="bold">
+                Date:
+              </label>
+              <DatePicker
+                className="inputField"
+                id="date"
+                selected={date}
+                dateFormat="dd/MM/yyyy"
+                onChange={(e) => {
+                  setDate(e);
+                }}
+              ></DatePicker>
+            </div>
+            <div className="profileInputNew marginLeft">
+              <label for="specialty" className="bold">
+                Specialty:
+              </label>
+              <input
+                className="inputField"
+                id="specialty"
+                placeholder="Specialty"
+                onChange={(e) => {
+                  setSpecialty(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className="profileInputNew marginLeft">
+              <label for="test" className="bold">
+                Medical Test:
+              </label>
+              <input
+                className="inputField"
+                id="test"
+                placeholder="Medical test"
+                onChange={(e) => {
+                  setTest(e.target.value);
+                }}
+              ></input>
+            </div>
+            <div className="marginLeft">
+              <label for="upload" className="bold">
+                {" "}
+                Upload test results:
+              </label>
+              <input
+                type="file"
+                accept="image/"
+                onChange={(e) => {
+                  handleUploadImage(e);
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="reportInputNew">
+            <label for="report" className="bold">
+              Medical Report:
+            </label>
+            <textarea
+              className="medicalReport"
+              id="report"
+              placeholder="Medical report"
+              onChange={(e) => {
+                setReport(e.target.value);
+              }}
+            ></textarea>
+          </div>
         </div>
+        <button
+          className="saveBtn"
+          onClick={() => {
+            submitEntry();
+            console.log(
+              image,
+              test,
+              report,
+              date.getDate() +
+                "/" +
+                (date.getMonth() + 1) +
+                "/" +
+                date.getFullYear(),
+              specialty
+            );
+          }}
+        >
+          Save
+        </button>
       </div>
 
-      <button
-        className="saveBtn"
-        onClick={() => {
-          submitEntry();
-          console.log(
-            image,
-            test,
-            report,
-            date.getDate() +
-              "/" +
-              (date.getMonth() + 1) +
-              "/" +
-              date.getFullYear(),
-            specialty
-          );
-        }}
-      >
-        Save
-      </button>
       <Footer></Footer>
     </div>
   );
