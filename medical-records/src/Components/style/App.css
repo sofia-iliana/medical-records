@@ -23,7 +23,7 @@ h1 {
 
 .mainContainer {
   display: grid;
-  background-image: url("src/Components/style/images/stethoscope-copy-space.jpg");
+  background-image: url("/images/stethoscope-copy-space.jpg");
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   min-height: 100vh;
@@ -257,7 +257,7 @@ table {
 /*doctor profile*/
 .mainDoctorProfile {
   display: grid;
-  background-image: url("src/Components/style/images/international-worker-s-day-with-doctor-tools.jpg");
+  background-image: url("/images/international-worker-s-day-with-doctor-tools.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;

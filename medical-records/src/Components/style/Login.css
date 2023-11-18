@@ -13,7 +13,7 @@ p {
   align-items: center;
   justify-content: center;
   grid-template-rows: auto auto auto;
-  background-image: url("src/Components/style/images/stethoscope-with-business-card.jpg");
+  background-image: url("/images/stethoscope-with-business-card.jpg");
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   min-height: 100vh;
