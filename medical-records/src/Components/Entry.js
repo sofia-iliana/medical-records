@@ -21,7 +21,7 @@ function Entry() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:1212/user/verify", {
+        .post("https://medical-records-backend.onrender.com/user/verify", {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -30,7 +30,7 @@ function Entry() {
             console.log(data._id);
             axios
               .get(
-                "http://localhost:1212/entry/id/" +
+                "https://medical-records-backend.onrender.com/entry/id/" +
                   localStorage.getItem("entry")
               )
               .then(({ data }) => {
@@ -54,7 +54,8 @@ function Entry() {
     if (shouldDelete) {
       axios
         .delete(
-          "http://localhost:1212/entry/delete/" + localStorage.getItem("entry")
+          "https://medical-records-backend.onrender.com/entry/delete/" +
+            localStorage.getItem("entry")
         )
         .then(({ data }) => {
           navigate("/profile");
@@ -85,7 +86,8 @@ function Entry() {
     if (shouldUpdate) {
       axios
         .put(
-          "http://localhost:1212/entry/update/" + localStorage.getItem("entry"),
+          "https://medical-records-backend.onrender.com/entry/update/" +
+            localStorage.getItem("entry"),
           { specialty, medicalReport: report, kindOfTest: test }
         )
         .then(({ data }) => {

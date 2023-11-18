@@ -39,9 +39,15 @@ function Login() {
   function login() {
     if (email && password) {
       if (role === "patient") {
-        sendPost("http://localhost:1212/user/login", "/profile");
+        sendPost(
+          "https://medical-records-backend.onrender.com/user/login",
+          "/profile"
+        );
       } else {
-        sendPost("http://localhost:1212/doctor/login", "/doctorProfile");
+        sendPost(
+          "https://medical-records-backend.onrender.com/doctor/login",
+          "/doctorProfile"
+        );
       }
     } else {
       alert("Enter email and password");

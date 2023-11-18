@@ -16,7 +16,7 @@ function DoctorProfile() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:1212/doctor/verify", {
+        .post("https://medical-records-backend.onrender.com/doctor/verify", {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -37,7 +37,10 @@ function DoctorProfile() {
   function getPatients() {
     if (socialSecNum) {
       axios
-        .get("http://localhost:1212/user/ssn/" + socialSecNum)
+        .get(
+          "https://medical-records-backend.onrender.com/user/ssn/" +
+            socialSecNum
+        )
         .then(({ data }) => {
           if (data) {
             console.log(data);
@@ -52,7 +55,7 @@ function DoctorProfile() {
     if (patientId) {
       console.log(patientId);
       axios
-        .post("http://localhost:1212/request/create", {
+        .post("https://medical-records-backend.onrender.com/request/create", {
           doctorName: doctor.fullName,
           doctorId: doctor._id,
           userId: patientId,

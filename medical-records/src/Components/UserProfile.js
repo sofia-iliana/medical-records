@@ -21,7 +21,7 @@ function UserProfile() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:1212/user/verify", {
+        .post("https://medical-records-backend.onrender.com/user/verify", {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -29,7 +29,10 @@ function UserProfile() {
             setUser(data);
             console.log(data._id);
             axios
-              .get("http://localhost:1212/entry/user/" + data._id)
+              .get(
+                "https://medical-records-backend.onrender.com/entry/user/" +
+                  data._id
+              )
               .then(({ data }) => {
                 console.log(data);
                 setEntries(data);

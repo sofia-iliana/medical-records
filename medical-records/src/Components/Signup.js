@@ -41,23 +41,31 @@ function Signup() {
   function signup() {
     if (email && password && fullName) {
       if (role === "patient") {
-        sendPost("http://localhost:1212/user/signup", "/profile", {
-          fullName,
-          email,
-          password,
-          phone,
-          socialSecNum,
-          dateOfBirth,
-          role,
-        });
+        sendPost(
+          "https://medical-records-backend.onrender.com/user/signup",
+          "/profile",
+          {
+            fullName,
+            email,
+            password,
+            phone,
+            socialSecNum,
+            dateOfBirth,
+            role,
+          }
+        );
       } else {
-        sendPost("http://localhost:1212/doctor/signup", "/doctorProfile", {
-          fullName,
-          email,
-          password,
-          specialty,
-          role,
-        });
+        sendPost(
+          "https://medical-records-backend.onrender.com/doctor/signup",
+          "/doctorProfile",
+          {
+            fullName,
+            email,
+            password,
+            specialty,
+            role,
+          }
+        );
       }
     } else {
       alert("Please, fill the form");

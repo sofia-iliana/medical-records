@@ -22,7 +22,7 @@ function EntryForDoctor() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:1212/doctor/verify", {
+        .post("https://medical-records-backend.onrender.com/doctor/verify", {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -31,7 +31,7 @@ function EntryForDoctor() {
             console.log(data._id);
             axios
               .get(
-                "http://localhost:1212/entry/id/" +
+                "https://medical-records-backend.onrender.com/entry/id/" +
                   localStorage.getItem("entry")
               )
               .then(({ data }) => {
@@ -71,7 +71,8 @@ function EntryForDoctor() {
     if (shouldUpdate) {
       axios
         .put(
-          "http://localhost:1212/entry/update/" + localStorage.getItem("entry"),
+          "https://medical-records-backend.onrender.com/entry/update/" +
+            localStorage.getItem("entry"),
           { specialty, medicalReport: report, kindOfTest: test }
         )
         .then(({ data }) => {

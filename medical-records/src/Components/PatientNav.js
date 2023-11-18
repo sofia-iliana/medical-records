@@ -16,7 +16,10 @@ function PatientNav(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1212/request/get/" + props.userId)
+      .get(
+        "https://medical-records-backend.onrender.com/request/get/" +
+          props.userId
+      )
       .then(({ data }) => {
         setResults(data);
         console.log(results);
@@ -45,9 +48,13 @@ function PatientNav(props) {
   function giveAccess() {
     if (requestId) {
       axios
-        .put("http://localhost:1212/request/access/" + requestId, {
-          allow: true,
-        })
+        .put(
+          "https://medical-records-backend.onrender.com/request/access/" +
+            requestId,
+          {
+            allow: true,
+          }
+        )
         .then(({ data }) => {
           alert(data.msg);
         });

@@ -23,7 +23,7 @@ function EntriesForDoctor() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .post("http://localhost:1212/doctor/verify", {
+        .post("https://medical-records-backend.onrender.com/doctor/verify", {
           token: localStorage.getItem("token"),
         })
         .then(({ data }) => {
@@ -34,7 +34,7 @@ function EntriesForDoctor() {
               //get the request data to check if patient have given permission
               axios
                 .get(
-                  "http://localhost:1212/request/getEntry/" +
+                  "https://medical-records-backend.onrender.com/request/getEntry/" +
                     localStorage.getItem("accessRequest") //the id of the request
                 )
                 .then(({ data }) => {
@@ -45,7 +45,8 @@ function EntriesForDoctor() {
                       //if doctor has permission, get the entries of the patient
                       axios
                         .get(
-                          "http://localhost:1212/entry/user/" + data[0].userId
+                          "https://medical-records-backend.onrender.com/entry/user/" +
+                            data[0].userId
                         )
                         .then(({ data }) => {
                           setPatientName(data[0].fullName);

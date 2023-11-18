@@ -13,7 +13,7 @@ function DisconnectButton() {
       if (shouldDisconnect) {
         axios
           .delete(
-            "http://localhost:1212/request/delete/" +
+            "https://medical-records-backend.onrender.com/request/delete/" +
               localStorage.getItem("accessRequest")
           )
           .then(({ data }) => {

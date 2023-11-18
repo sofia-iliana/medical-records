@@ -15,7 +15,10 @@ function DoctorNav(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1212/request/getForDoctor/" + props.doctorId)
+      .get(
+        "https://medical-records-backend.onrender.com/request/getForDoctor/" +
+          props.doctorId
+      )
       .then(({ data }) => {
         setResults(data);
         console.log(results);
